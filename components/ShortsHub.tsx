@@ -335,7 +335,7 @@ export function ShortsHub({
 
       <div className="grid items-start gap-5 lg:grid-cols-[400px_1fr]">
         {/* Vertical 9:16 Phone-Framed Shorts Player */}
-        <div className="mx-auto w-full max-w-[390px]">
+        <div className="mx-auto w-full min-w-0 max-w-[390px]">
           <div
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
@@ -459,8 +459,8 @@ export function ShortsHub({
         </div>
 
         {/* Playlist Grid of Concept Shorts */}
-        <div className="space-y-2.5">
-          <div className="flex items-center justify-between">
+        <div className="min-w-0 space-y-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-1">
             <h3 className="text-base font-extrabold">
               {topicId ? "All Concept Shorts in This Topic" : `Shorts Reel (${pool.length})`}
             </h3>
@@ -475,7 +475,7 @@ export function ShortsHub({
                   key={sh.id}
                   type="button"
                   onClick={() => selectClip(sh, true)}
-                  className={`card flex flex-col justify-between p-3.5 text-left transition-all hover:border-brand ${
+                  className={`card flex min-w-0 flex-col justify-between p-3.5 text-left transition-all hover:border-brand ${
                     isCur ? "border-2 border-brand ring-2 ring-brand/20" : ""
                   }`}
                 >

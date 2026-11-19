@@ -52,6 +52,11 @@ function BitFlipperWidget() {
             {activeSignedTerms.length
               ? `${activeSignedTerms.map((w, idx) => (idx === 0 ? String(w) : `+ ${w}`)).join(" ")} = ${signedVal > 0 ? `+${signedVal}` : signedVal}`
               : "0 (all bits OFF)"}
+            {byteVal === 0x80 ? (
+              <span className="ml-1.5 font-semibold text-bad">
+                (Edge case: +128 cannot fit in 8-bit Two&apos;s Complement −128..+127, so Flip + 1 wraps −128 back to −128!)
+              </span>
+            ) : null}
           </div>
           <div>
             <strong>Hex Nibbles:</strong> Upper nibble{" "}

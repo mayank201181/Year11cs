@@ -44,7 +44,10 @@ const TABS: { id: TopicTab; label: string; icon: string }[] = [
   { id: "cram", label: "Exam Cram", icon: "🚨" },
 ];
 
-const parseTab = (v: string | null): TopicTab => (TABS.some((t) => t.id === v) ? (v as TopicTab) : "learn");
+const parseTab = (v: string | null): TopicTab => {
+  if (v === "practice") return "practise";
+  return TABS.some((t) => t.id === v) ? (v as TopicTab) : "learn";
+};
 
 /** Sticky site header height (h-14 + 1px border). */
 const HEADER_OFFSET = 57;
@@ -430,7 +433,7 @@ export function TopicView({
 
   const drills = useMemo(() => drillsForTopic(topic.id), [topic.id]);
   const runner = useMemo(() => resolveRunner(topic, drills, openParam), [topic, drills, openParam]);
-  const strand = STRAND_STYLE[topic.strand] ?? STRAND_STYLE.Skills;
+  const strand = STRAND_STYLE[topic.strand] ?? STRAND_STYLE["Paper 1: Computer Systems"];
 
   const shape = useMemo<TopicShape>(() => {
     const meta = metaById(topic.id);

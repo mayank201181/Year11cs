@@ -146,7 +146,7 @@ export function TopicsBrowser({ summaries }: { summaries: TopicSummary[] }) {
             autoComplete="off"
             spellCheck={false}
             className="input pl-10 pr-12"
-            placeholder="Search, e.g. “percentages” or “bearings”"
+            placeholder="Search, e.g. “Two's Complement”, “MAR”, “SQL” or “XOR”"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -162,7 +162,7 @@ export function TopicsBrowser({ summaries }: { summaries: TopicSummary[] }) {
           </span>
         </div>
 
-        <div role="group" aria-label="Filter by strand" className="nav-scroll -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
+        <div role="group" aria-label="Filter by strand" className="flex flex-wrap gap-2">
           {chips.map((s) => {
             const on = strand === s;
             const st = s === ALL ? null : strandStyle(s);
@@ -172,7 +172,7 @@ export function TopicsBrowser({ summaries }: { summaries: TopicSummary[] }) {
                 type="button"
                 aria-pressed={on}
                 onClick={() => chooseStrand(s)}
-                className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-full border px-3.5 text-sm font-bold transition-colors ${
+                className={`relative inline-flex min-h-10 max-w-full items-center gap-2 rounded-full border px-3.5 text-left text-sm font-bold transition-colors ${
                   on ? "border-transparent bg-brand text-brand-ink" : "border-line bg-surface text-ink hover:bg-surface-2"
                 }`}
               >

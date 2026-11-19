@@ -272,7 +272,7 @@ function SortSearchStepper() {
                   setStepIdx(0);
                 }}
               />
-              Optimisation 1: `Swap` Boolean Flag (early exit)
+              Optimisation 1: <code>Swap</code> Boolean Flag (early exit)
             </label>
             <label className="flex cursor-pointer items-center gap-2 font-semibold text-ink">
               <input
@@ -283,12 +283,12 @@ function SortSearchStepper() {
                   setStepIdx(0);
                 }}
               />
-              Optimisation 2: Shrink `Last ← Last − 1` each pass
+              Optimisation 2: Shrink <code>Last ← Last − 1</code> each pass
             </label>
           </div>
         ) : (
           <div className="flex flex-wrap items-center gap-2 rounded-xl border border-line bg-surface-2 p-3 text-sm">
-            <span className="font-bold text-ink-2">Choose `Target` value:</span>
+            <span className="font-bold text-ink-2">Choose <code>Target</code> value:</span>
             {[...baseArr, 99].map((v) => (
               <button
                 key={v}
@@ -518,7 +518,7 @@ function TraceAndTestDataExplorer() {
       return {
         category: "Abnormal (Erroneous) — Fails Presence Check",
         accepted: false,
-        detail: "Input is blank/empty. Rejected immediately by a Presence check (`Input <> \"\"`).",
+        detail: 'Input is blank/empty. Rejected immediately by a Presence check (Input <> "").',
       };
     }
     if (!/^-?\d+$/.test(trimmed)) {
@@ -563,7 +563,7 @@ function TraceAndTestDataExplorer() {
     <WidgetFrame
       title="CIE Test-Data Boundary Classifier & Live Trace-Table Runner"
       tryThis={[
-        "In **Test-Data Lab**, click quick-test buttons `0`, `1`, `100`, `101` and toggle the **Off-by-One `<` Bug** ON to see why **Extreme/Boundary** data catches bugs that Normal data (`45`) misses!",
+        "In **Test-Data Lab**, click quick-test buttons `0`, `1`, `100`, `101` and toggle the **Off-by-One (< / >) Bug** ON to see why **Extreme/Boundary** data catches bugs that Normal data (`45`) misses!",
         "Switch to **Trace-Table Runner** and step row-by-row to see why unchanged variables stay blank until reassigned.",
       ]}
       caption={tab === "testdata" ? verdict.detail : visibleRows[visibleRows.length - 1]?.explanation}
@@ -638,7 +638,7 @@ function TraceAndTestDataExplorer() {
                   checked={buggyStrict}
                   onChange={(e) => setBuggyStrict(e.target.checked)}
                 />
-                Simulate `&lt;` / `&gt;` Off-by-One Bug
+                Simulate <code>&lt;</code> / <code>&gt;</code> Off-by-One Bug
               </label>
             </div>
 
@@ -706,7 +706,7 @@ function TraceAndTestDataExplorer() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-xl bg-slate-900 p-3 font-mono text-xs text-slate-100">
+              <div className="min-w-0 overflow-x-auto rounded-xl bg-slate-900 p-3 font-mono text-xs text-slate-100">
                 <div className="mb-2 text-[11px] font-bold uppercase tracking-wide text-amber-300">
                   {sc.inputsLabel}
                 </div>
@@ -724,7 +724,7 @@ function TraceAndTestDataExplorer() {
                 })}
               </div>
 
-              <div className="overflow-x-auto rounded-xl border border-line bg-surface">
+              <div className="min-w-0 overflow-x-auto rounded-xl border border-line bg-surface">
                 <table className="w-full border-collapse text-center font-mono text-sm">
                   <thead>
                     <tr className="bg-surface-2 text-xs font-extrabold text-ink">

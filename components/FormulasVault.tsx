@@ -221,11 +221,11 @@ export function FormulasVault({ topics }: { topics: VaultTopicData[] }) {
                   <h3 className="text-xs font-black uppercase tracking-wider text-brand">📖 Key Formulas, Syntax &amp; Definitions</h3>
                   <dl className="mt-2 grid gap-3 sm:grid-cols-2">
                     {formulas.map((f, idx) => (
-                      <div key={idx} className="rounded-xl border border-line bg-surface p-3.5">
+                      <div key={idx} className="min-w-0 rounded-xl border border-line bg-surface p-3.5">
                         <dt className="text-xs font-extrabold uppercase tracking-wide text-ink-2">
                           <RichInline text={f.name} />
                         </dt>
-                        <dd className="mt-1">
+                        <dd className="mt-1 overflow-x-auto">
                           <Rich text={f.formula} className="text-[0.98rem] font-semibold text-ink" />
                           {f.note ? <Rich text={f.note} className="mt-0.5 text-xs text-ink-2" /> : null}
                         </dd>

@@ -180,6 +180,53 @@ function MediaFileSizeCalculator() {
                 />
               </div>
             </div>
+
+            {/* Live Analogue vs Sampled Staircase Wave Visual */}
+            {(() => {
+              const samples = [8, 12, 18, 24][rateIdx] ?? 12;
+              const quantSteps = sampleRes === "8" ? 6 : sampleRes === "16" ? 14 : 28;
+              const x0 = 24;
+              const w = 472;
+              const midY = 66;
+              const amp = 42;
+              const smoothPts = Array.from({ length: 81 }, (_, i) => {
+                const t = i / 80;
+                const x = x0 + t * w;
+                const y = midY - Math.sin(t * Math.PI * 2) * amp;
+                return `${x.toFixed(1)},${y.toFixed(1)}`;
+              }).join(" ");
+              const stepW = w / samples;
+              const stairD: string[] = [];
+              const dots: { x: number; y: number }[] = [];
+              for (let i = 0; i < samples; i++) {
+                const t = (i + 0.5) / samples;
+                const rawNorm = Math.sin(t * Math.PI * 2);
+                const qNorm = Math.round(rawNorm * (quantSteps / 2)) / (quantSteps / 2);
+                const sx = x0 + i * stepW;
+                const sy = midY - qNorm * amp;
+                stairD.push(`${i === 0 ? "M" : "L"} ${sx.toFixed(1)} ${sy.toFixed(1)} L ${(sx + stepW).toFixed(1)} ${sy.toFixed(1)}`);
+                dots.push({ x: sx + stepW / 2, y: sy });
+              }
+              return (
+                <div className="rounded-xl border border-line bg-surface-2 p-2.5">
+                  <div className="mb-1 flex flex-wrap items-center justify-between gap-1 text-[11px] font-bold text-ink-2">
+                    <span>ADC Sampling Visualiser ({rate.toLocaleString("en-GB")} Hz · {sBits}-bit · {ch === 2 ? "Stereo ×2 channels" : "Mono ×1 channel"})</span>
+                    <span className="text-brand">Dashed = Analogue · Blue = Digital Staircase</span>
+                  </div>
+                  <svg viewBox="0 0 520 132" className="w-full rounded-lg bg-surface" role="img" aria-label="Analogue sound wave compared with digital sampled staircase wave">
+                    <line x1={x0} y1={midY} x2={x0 + w} y2={midY} className="stroke-line" strokeWidth={1} />
+                    <polyline points={smoothPts} fill="none" stroke="#94a3b8" strokeWidth={2} strokeDasharray="5 4" />
+                    <path d={stairD.join(" ")} fill="none" stroke="#0284c7" strokeWidth={2.4} />
+                    {dots.map((pt, idx) => (
+                      <circle key={idx} cx={pt.x} cy={pt.y} r={3} fill="#0e7490" />
+                    ))}
+                    <text x={260} y={124} textAnchor="middle" fontSize={10} className="fill-ink-2">
+                      Higher sample rate = narrower steps · Higher bit depth = finer amplitude levels{ch === 2 ? " · Stereo stores 2× independent tracks" : ""}
+                    </text>
+                  </svg>
+                </div>
+              );
+            })()}
           </div>
         )}
 
@@ -317,7 +364,7 @@ function LiveRleCompressor() {
           <Readout
             label="Bytes Saved"
             value={savedBytes >= 0 ? `${savedBytes} B (${pctSaved}%)` : `${savedBytes} B (Larger!)`}
-            tone={savedBytes > 0 ? "good" : "bad"}
+            tone={savedBytes > 0 ? "good" : savedBytes === 0 ? "ink" : "bad"}
           />
         </div>
       </div>

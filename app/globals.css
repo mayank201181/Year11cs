@@ -298,6 +298,27 @@ body {
 input[type="range"] { accent-color: var(--brand); width: 100%; }
 
 @media print {
+  :root,
+  :root[data-theme="dark"] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f5f6fb;
+    --ink: #111827;
+    --ink-2: #4b5563;
+    --line: #d1d5db;
+    --brand: #0e7490;
+    --brand-soft: #e0f2fe;
+    --good: #15803d;
+    --good-soft: #dcfce7;
+    --bad: #c2410c;
+    --bad-soft: #ffedd5;
+    --warn: #a16207;
+    --warn-soft: #fef9c3;
+    --shadow: none;
+    color-scheme: light;
+  }
   .no-print { display: none !important; }
-  body { background: #fff; }
+  body { background: #fff; color: #111827; }
+  main { padding-bottom: 0 !important; }
+  .card { box-shadow: none !important; }
 }

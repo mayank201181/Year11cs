@@ -19,6 +19,27 @@ export interface TopicCramPack {
   questionTraps: QuestionTrapItem[];
 }
 
+function truncateRich(text: string, max = 140): string {
+  const s = text.trim();
+  if (s.length <= max) return s;
+  let cut = s.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  if (lastSpace > max * 0.55) cut = cut.slice(0, lastSpace);
+  cut = cut.replace(/[,;:\-–—(\s]+$/, "");
+  const lastOpenMath = cut.lastIndexOf("{{");
+  const lastCloseMath = cut.lastIndexOf("}}");
+  if (lastOpenMath > lastCloseMath) cut = cut.slice(0, lastOpenMath).trimEnd();
+  if ((cut.match(/`/g)?.length ?? 0) % 2 === 1) {
+    cut = cut.slice(0, cut.lastIndexOf("`")).trimEnd();
+  }
+  cut = cut.replace(/\*+$/, "");
+  if ((cut.match(/\*\*/g)?.length ?? 0) % 2 === 1) {
+    const idx = cut.lastIndexOf("**");
+    cut = `${cut.slice(0, idx)}${cut.slice(idx + 2)}`;
+  }
+  return `${cut.replace(/[,;:\-–—(\s]+$/, "")}…`;
+}
+
 export function buildTopicCramPack(topic: Topic): TopicCramPack {
   const L = topic.learn ?? {
     flashcards: [],
@@ -47,7 +68,7 @@ export function buildTopicCramPack(topic: Topic): TopicCramPack {
         seenErrors.add(norm);
         const firstLine = q.question.split("\n").find((ln) => ln.trim() && !ln.trim().startsWith("|")) ?? q.question;
         questionTraps.push({
-          question: firstLine.length > 140 ? `${firstLine.slice(0, 137)}…` : firstLine,
+          question: truncateRich(firstLine, 140),
           commonError: q.commonError.trim(),
         });
       }

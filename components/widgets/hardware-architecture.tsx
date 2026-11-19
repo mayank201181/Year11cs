@@ -419,7 +419,7 @@ function VonNeumannFdeWidget() {
           <polygon points="424,158 414,152 414,164" fill={dataActive ? "#0284c7" : "#94a3b8"} />
           <polygon points="310,158 320,152 320,164" fill={dataActive ? "#0284c7" : "#94a3b8"} />
           <text x={367} y={149} textAnchor="middle" fontSize={9.5} fontWeight="bold" fill="#0369a1">
-            Data (2-way ↔)
+            {s.activeBus === "data-write" ? "Data (CPU → RAM)" : s.activeBus === "data-read" ? "Data (RAM → CPU)" : "Data (2-way ↔)"}
           </text>
 
           {/* Control Bus (Bidirectional <->) */}

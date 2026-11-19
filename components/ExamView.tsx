@@ -66,23 +66,23 @@ function topicCount(paper: ExamPaper): number {
 const TIPS = [
   {
     icon: "✏️",
-    title: "Show your working on paper",
-    text: "Keep scrap paper and a pencil beside you. Writing each step makes slips easy to spot — and in a real exam, method earns marks even when the final answer is wrong.",
+    title: "Show your binary, IEC & trace working on paper",
+    text: "Keep scrap paper and a pencil beside you — CIE 0478 is strictly non-calculator. Write binary column weights (128..1), carries, and trace-table rows clearly so method slips are easy to catch.",
   },
   {
     icon: "📏",
-    title: "Check units and rounding",
-    text: "Before you type, re-read the question: cm or cm²? To 1 decimal place or 3 significant figures? A fraction or a decimal?",
+    title: "Check IEC 1024 units, 8-bit padding & SQL quotes",
+    text: "Divide by 1024 (never 1000) for KiB/MiB, pad 8-bit binary with leading zeros, use single quotes only on SQL text literals, and remember CIE SUBSTRING is 1-indexed!",
   },
   {
     icon: "⏭️",
     title: "Skip and come back",
-    text: "Stuck for more than a couple of minutes? Jump ahead with the numbered buttons and return later with fresh eyes. Easy marks first.",
+    text: "Stuck on a tricky trace table or logic circuit? Jump ahead with the numbered buttons and return later with fresh eyes. Secure easy marks first.",
   },
   {
     icon: "🔍",
-    title: "Estimate, then check",
-    text: "A quick estimate tells you whether an answer is sensible. Leave five minutes at the end to look back over everything.",
+    title: "Cross-check Two's Complement & truth tables",
+    text: "Verify negative bytes with −128 + active positive bits, check all 8 rows (000–111) in 3-input logic circuits, and separate Validation (reasonable) from Verification (accurate copy).",
   },
 ];
 
@@ -221,8 +221,11 @@ export function ExamView({ papers, topicTitles, practiceTopics = [] }: ExamViewP
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-2xl font-black tracking-tight sm:text-3xl">The Big Exam</h1>
-        <p className="max-w-2xl text-ink-2">Mixed questions from every topic, marked at the end like a real paper.</p>
+        <p className="text-xs font-black uppercase tracking-wider text-brand">Cambridge IGCSE Computer Science · 0478</p>
+        <h1 className="text-2xl font-black tracking-tight sm:text-3xl">Paper 1 &amp; Paper 2 Mock Exams</h1>
+        <p className="max-w-2xl text-ink-2">
+          2 Paper 1 mocks (<em>Computer Systems</em>) and 2 Paper 2 mocks (<em>Algorithms, Programming &amp; Logic</em>) — non-calculator, marked at the end like a real CIE 0478 sitting.
+        </p>
         {papers.length && done.length ? (
           <p className="text-sm font-bold text-ink-2">
             {done.length} of {papers.length} paper{papers.length === 1 ? "" : "s"} completed
@@ -263,9 +266,9 @@ export function ExamView({ papers, topicTitles, practiceTopics = [] }: ExamViewP
         <>
           <ol className="grid gap-3 sm:grid-cols-3" aria-label="How it works">
             {[
-              { n: 1, title: "Choose a paper", text: "Human, physical, skills or the full mixed paper — timed or not." },
-              { n: 2, title: "Answer everything", text: "Nothing is marked as you go — jump between questions freely." },
-              { n: 3, title: "Mark & review", text: "Get your score, mark written answers, and see which topics to revise." },
+              { n: 1, title: "Choose Paper 1 or Paper 2", text: "Computer Systems (Paper 1) or Algorithms, Programming & Logic (Paper 2) — timed (105 min) or untimed." },
+              { n: 2, title: "Answer everything", text: "Nothing is marked as you go — jump between binary, logic, trace-table and SQL questions freely." },
+              { n: 3, title: "Mark & review", text: "Get your score, self-mark written/pseudocode answers against the CIE mark scheme, and spot weak topics." },
             ].map((s) => (
               <li key={s.n} className="flex gap-3 rounded-xl border border-line bg-surface-2 p-3">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-black text-brand-ink" aria-hidden>
@@ -344,7 +347,7 @@ export function ExamView({ papers, topicTitles, practiceTopics = [] }: ExamViewP
                             <Switch checked={useTimer && timerAvailable} onChange={setUseTimer} disabled={!timerAvailable} labelledBy={`${headingId}-timer`} describedBy={`${headingId}-timer-desc`} />
                           </div>
                           <ul className="mt-3 list-disc space-y-0.5 pl-5 text-sm text-ink-2">
-                            <li>{paper.calculator ? "You may use a calculator. Have a pencil and ruler ready for graphs and maps." : "No calculator — have scrap paper and a pencil ready."}</li>
+                            <li>{paper.calculator ? "You may use a calculator. Have scrap paper and a pencil ready." : "Non-calculator (CIE 0478 rule) — have scrap paper and a pencil ready for binary, trace tables and logic circuits."}</li>
                             <li>Answers are marked when you press “Finish & mark”. Written answers are marked by you against the mark scheme.</li>
                           </ul>
                           <div className="mt-4 flex flex-wrap gap-2">

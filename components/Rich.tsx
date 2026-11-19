@@ -6,12 +6,10 @@ import { toMathML } from "@/lib/mathml";
 // Keys are positions within one render call, so re-rendering the same text keeps
 // the same DOM (no remounts: text selection and aria-live regions survive).
 
-/** Inline: {{maths}}, **bold**, *italic*, `code`. Newlines become <br/>. */
-export function renderInline(text: string): ReactNode[] {
+function renderCodeOrMath(text: string): ReactNode[] {
   const out: ReactNode[] = [];
   const k = () => out.length;
-  const parts = String(text ?? "").split(/(\{\{[\s\S]+?\}\})/g);
-  for (const part of parts) {
+  for (const part of text.split(/(\{\{[\s\S]+?\}\})/g)) {
     if (!part) continue;
     if (part.startsWith("{{") && part.endsWith("}}")) {
       out.push(
@@ -19,14 +17,60 @@ export function renderInline(text: string): ReactNode[] {
       );
       continue;
     }
-    const tokens = part.split(/(\*\*[^*]+\*\*|`[^`]+`|\*[^*\s][^*]*\*|\n)/g);
-    for (const t of tokens) {
-      if (!t) continue;
-      if (t === "\n") out.push(<br key={k()} />);
-      else if (t.startsWith("**") && t.endsWith("**") && t.length > 4) out.push(<strong key={k()}>{t.slice(2, -2)}</strong>);
-      else if (t.startsWith("`") && t.endsWith("`") && t.length > 2) out.push(<code key={k()}>{t.slice(1, -1)}</code>);
-      else if (t.startsWith("*") && t.endsWith("*") && t.length > 2) out.push(<em key={k()}>{t.slice(1, -1)}</em>);
-      else out.push(<Fragment key={k()}>{t}</Fragment>);
+    for (const seg of part.split(/(`[^`]+`)/g)) {
+      if (!seg) continue;
+      if (seg.startsWith("`") && seg.endsWith("`") && seg.length > 2) {
+        out.push(<code key={k()}>{seg.slice(1, -1)}</code>);
+      } else {
+        out.push(<Fragment key={k()}>{seg}</Fragment>);
+      }
+    }
+  }
+  return out;
+}
+
+function renderBoldInner(text: string): ReactNode[] {
+  const out: ReactNode[] = [];
+  const k = () => out.length;
+  for (const seg of text.split(/(\{\{[\s\S]+?\}\}|`[^`]+`|\*[^*\s][^*]*\*)/g)) {
+    if (!seg) continue;
+    if (seg.startsWith("{{") && seg.endsWith("}}")) {
+      out.push(
+        <span key={k()} className="math" dangerouslySetInnerHTML={{ __html: toMathML(seg.slice(2, -2)) }} />,
+      );
+    } else if (seg.startsWith("`") && seg.endsWith("`") && seg.length > 2) {
+      out.push(<code key={k()}>{seg.slice(1, -1)}</code>);
+    } else if (seg.startsWith("*") && seg.endsWith("*") && seg.length > 2) {
+      out.push(<em key={k()}>{renderCodeOrMath(seg.slice(1, -1))}</em>);
+    } else {
+      out.push(<Fragment key={k()}>{seg}</Fragment>);
+    }
+  }
+  return out;
+}
+
+/** Inline: {{maths}}, **bold**, *italic*, `code`. Newlines become <br/>. */
+export function renderInline(text: string): ReactNode[] {
+  const out: ReactNode[] = [];
+  const k = () => out.length;
+  const tokens = String(text ?? "").split(
+    /(\{\{[\s\S]+?\}\}|\*\*(?:\{\{[^\n]+?\}\}|`[^`\n]+`|\*(?!\*)|[^*\n])+\*\*|`[^`]+`|\*[^*\s][^*]*\*|\n)/g,
+  );
+  for (const t of tokens) {
+    if (!t) continue;
+    if (t === "\n") out.push(<br key={k()} />);
+    else if (t.startsWith("{{") && t.endsWith("}}")) {
+      out.push(
+        <span key={k()} className="math" dangerouslySetInnerHTML={{ __html: toMathML(t.slice(2, -2)) }} />,
+      );
+    } else if (t.startsWith("**") && t.endsWith("**") && t.length > 4) {
+      out.push(<strong key={k()}>{renderBoldInner(t.slice(2, -2))}</strong>);
+    } else if (t.startsWith("`") && t.endsWith("`") && t.length > 2) {
+      out.push(<code key={k()}>{t.slice(1, -1)}</code>);
+    } else if (t.startsWith("*") && t.endsWith("*") && t.length > 2) {
+      out.push(<em key={k()}>{renderCodeOrMath(t.slice(1, -1))}</em>);
+    } else {
+      out.push(<Fragment key={k()}>{t}</Fragment>);
     }
   }
   return out;
@@ -67,7 +111,15 @@ export function renderBlocks(text: string): ReactNode[] {
     let i = 0;
     while (i < lines.length) {
       const line = lines[i];
-      if (/^\s*\|/.test(line)) {
+      if (/^ {0,3}#{2,4}\s+/.test(line)) {
+        const headingText = line.replace(/^ {0,3}#{2,4}\s+/, "");
+        i++;
+        out.push(
+          <h4 key={k()} className="mt-4 mb-1.5 text-base font-extrabold text-ink">
+            {renderInline(headingText)}
+          </h4>,
+        );
+      } else if (/^\s*\|/.test(line)) {
         const tbl: string[] = [];
         while (i < lines.length && /^\s*\|/.test(lines[i])) tbl.push(lines[i++]);
         out.push(renderTable(tbl, k()));
@@ -91,6 +143,7 @@ export function renderBlocks(text: string): ReactNode[] {
         const p: string[] = [];
         while (
           i < lines.length &&
+          !/^ {0,3}#{2,4}\s+/.test(lines[i]) &&
           !/^\s*\|/.test(lines[i]) &&
           !/^\s*[-•]\s+/.test(lines[i]) &&
           !/^\s*\d+[.)]\s+/.test(lines[i]) &&

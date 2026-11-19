@@ -292,8 +292,8 @@ function CircuitTruthTableBuilder() {
           Active row <strong>{`${a}${b}${c}`}</strong>: intermediate wire{" "}
           <strong>{`P = ${a} ${gateP} ${b} = ${pVal}`}</strong>, intermediate wire{" "}
           <strong>{`Q = ${stageQExpr(stageQ)} = ${qVal}`}</strong>, final output{" "}
-          <strong>{`X = ${pVal} ${gateX} ${qVal} = ${xVal}`}</strong>. Across all 8 rows (`000`–`111`), the `X` column is{" "}
-          <code>{colString}</code> ({onesCount} of 8 rows equal `1`).
+          <strong>{`X = ${pVal} ${gateX} ${qVal} = ${xVal}`}</strong>. Across all 8 rows (<code>000</code>–<code>111</code>), the <code>X</code> column is{" "}
+          <code>{colString}</code> ({onesCount} of 8 rows equal <code>1</code>).
         </span>
       }
     >
@@ -344,7 +344,7 @@ function CircuitTruthTableBuilder() {
 
         {/* Clickable Input Switches + Live CIE SVG Schematic */}
         <div className="grid gap-4 lg:grid-cols-[1fr_300px]">
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             {/* Input toggle pills */}
             <div className="grid grid-cols-3 gap-2">
               {[
@@ -576,7 +576,7 @@ function CircuitTruthTableBuilder() {
           </div>
 
           {/* Live 8-Row Truth Table */}
-          <div className="rounded-xl border border-line bg-surface p-3">
+          <div className="min-w-0 rounded-xl border border-line bg-surface p-3">
             <div className="mb-2 flex items-center justify-between">
               <span className="text-xs font-extrabold uppercase tracking-wide text-ink-2">
                 8-Row CIE Truth Table (Tap Row)

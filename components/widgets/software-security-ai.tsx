@@ -535,8 +535,22 @@ function TranslatorExplorer() {
             <div className="grid grid-cols-2 gap-2">
               <Readout
                 label="Executable (.exe)?"
-                value={translator === "interpreter" ? "Never Created" : exeCreated ? "Yes (.exe Built)" : "No (Build Failed)"}
-                tone={exeCreated ? "good" : translator === "interpreter" ? "ink" : "bad"}
+                value={
+                  translator === "interpreter"
+                    ? "Never Created"
+                    : activeStep === 0
+                      ? "Not compiled yet"
+                      : exeCreated
+                        ? "Yes (.exe Built)"
+                        : "No (Build Failed)"
+                }
+                tone={
+                  exeCreated
+                    ? "good"
+                    : translator === "interpreter" || activeStep === 0
+                      ? "ink"
+                      : "bad"
+                }
               />
               <Readout
                 label="Errors Reported"
@@ -551,7 +565,17 @@ function TranslatorExplorer() {
                         ? "0 Errors"
                         : `All ${allErrors.length} (${allErrors.map((e) => `L${e.num}`).join(", ")})`
                 }
-                tone={allErrors.length > 0 && activeStep > 0 ? "bad" : "good"}
+                tone={
+                  activeStep === 0
+                    ? "ink"
+                    : translator === "interpreter"
+                      ? firstErrorLine && activeStep >= firstErrorLine
+                        ? "bad"
+                        : "good"
+                      : allErrors.length > 0
+                        ? "bad"
+                        : "good"
+                }
               />
             </div>
           </div>

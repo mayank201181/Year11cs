@@ -72,10 +72,18 @@ function evalAtom(atomStr: string, row: MemberRow): { val: boolean; err?: string
   }
   const m = s.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*(<>|!=|<=|>=|=|<|>)\s*(.+)$/);
   if (!m) {
+    const bareCol = findCol(s);
+    if (bareCol && typeof row[bareCol] === "boolean") {
+      return {
+        val: false,
+        err: `Incomplete boolean condition "${atomStr.trim()}".`,
+        tip: `CIE 0478 SQL requires an explicit comparison — write WHERE ${bareCol} = ${invert ? "FALSE" : "TRUE"}!`,
+      };
+    }
     return {
       val: false,
       err: `Invalid WHERE condition "${atomStr.trim()}".`,
-      tip: "CIE Trap: Always repeat the full field comparison after AND/OR — e.g. write `WHERE Club = 'Coding' OR Club = 'Chess'`, NEVER `OR 'Chess'`!",
+      tip: "CIE Trap: Always repeat the full field comparison after AND/OR — e.g. write WHERE Club = 'Coding' OR Club = 'Chess', NEVER OR 'Chess'!",
     };
   }
   const col = findCol(m[1]);
@@ -279,26 +287,32 @@ function runClubSql(rawSql: string): SqlResult {
   const matchedIds = new Set(filtered.map((r) => r.MemberID));
 
   if (orderPart) {
-    const om = orderPart.trim().match(/^([a-zA-Z_][a-zA-Z0-9_]*)(?:\s+(ASC|DESC))?$/i);
-    if (!om) {
-      return {
-        ok: false,
-        error: `Invalid ORDER BY clause "${orderPart}". Expected e.g. ORDER BY Points DESC.`,
-        matchedIds,
-        columns: [],
-        rows: [],
-      };
+    const clauses = orderPart.split(",").map((c) => c.trim()).filter(Boolean);
+    const sortSpecs: { col: ColName; dir: 1 | -1 }[] = [];
+    for (const clause of clauses) {
+      const om = clause.match(/^([a-zA-Z_][a-zA-Z0-9_]*)(?:\s+(ASC|DESC))?$/i);
+      if (!om) {
+        return {
+          ok: false,
+          error: `Invalid ORDER BY clause "${orderPart}". Expected e.g. ORDER BY Points DESC.`,
+          matchedIds,
+          columns: [],
+          rows: [],
+        };
+      }
+      const oCol = findCol(om[1]);
+      if (!oCol) {
+        return { ok: false, error: `Unknown ORDER BY field "${om[1]}".`, matchedIds, columns: [], rows: [] };
+      }
+      sortSpecs.push({ col: oCol, dir: (om[2] ?? "ASC").toUpperCase() === "DESC" ? -1 : 1 });
     }
-    const oCol = findCol(om[1]);
-    if (!oCol) {
-      return { ok: false, error: `Unknown ORDER BY field "${om[1]}".`, matchedIds, columns: [], rows: [] };
-    }
-    const dir = (om[2] ?? "ASC").toUpperCase() === "DESC" ? -1 : 1;
     filtered = [...filtered].sort((a, b) => {
-      const va = a[oCol];
-      const vb = b[oCol];
-      if (va === vb) return 0;
-      return (va < vb ? -1 : 1) * dir;
+      for (const { col, dir } of sortSpecs) {
+        const va = a[col];
+        const vb = b[col];
+        if (va !== vb) return (va < vb ? -1 : 1) * dir;
+      }
+      return 0;
     });
   }
 
@@ -390,8 +404,8 @@ function SqlQuerySandbox() {
       caption={
         result.ok ? (
           <span>
-            <strong>Query OK:</strong> {result.matchedIds.size} of {CLUB_TABLE.length} records matched `WHERE`.{" "}
-            {result.cieTip}
+            <strong>Query OK:</strong> {result.matchedIds.size} of {CLUB_TABLE.length} records matched{" "}
+            <code>WHERE</code>. {result.cieTip}
           </span>
         ) : (
           <span className="text-bad">
@@ -418,7 +432,7 @@ function SqlQuerySandbox() {
 
         <div>
           <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-ink-2">
-            Editable CIE 0478 SQL Query (`SELECT ... FROM ClubMembers ...`)
+            Editable CIE 0478 SQL Query (<code>SELECT ... FROM ClubMembers ...</code>)
           </label>
           <textarea
             rows={2}
@@ -430,9 +444,9 @@ function SqlQuerySandbox() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <div>
+          <div className="min-w-0">
             <div className="mb-1.5 text-xs font-bold uppercase tracking-wide text-ink-2">
-              Source Table: `ClubMembers` (MemberID = Primary Key)
+              Source Table: <code>ClubMembers</code> (MemberID = Primary Key)
             </div>
             <div className="overflow-x-auto rounded-xl border border-line">
               <table className="w-full text-left font-mono text-xs">
@@ -467,7 +481,7 @@ function SqlQuerySandbox() {
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <div className="mb-1.5 text-xs font-bold uppercase tracking-wide text-ink-2">
               Query Output ({result.ok ? `${result.rows.length} row${result.rows.length === 1 ? "" : "s"}` : "Fix syntax"})
             </div>
@@ -543,8 +557,8 @@ function SubstringVsPythonExplorer() {
       ]}
       caption={
         <span>
-          CIE `SUBSTRING(&quot;{word}&quot;, {safeStart}, {safeLen})` starts at <strong>1-based position {safeStart}</strong> and takes{" "}
-          <strong>{safeLen} character(s)</strong> → `&quot;{extracted}&quot;`. In Python, subtract 1 for the start (`{pyStart}`) and add length for the exclusive stop (`{pyStart} + {safeLen} = {pyStop}`) → `s[{pyStart}:{pyStop}]`!
+          CIE <code>SUBSTRING(&quot;{word}&quot;, {safeStart}, {safeLen})</code> starts at <strong>1-based position {safeStart}</strong> and takes{" "}
+          <strong>{safeLen} character(s)</strong> → <code>&quot;{extracted}&quot;</code>. In Python, subtract 1 for the start (<code>{pyStart}</code>) and add length for the exclusive stop (<code>{pyStart} + {safeLen} = {pyStop}</code>) → <code>s[{pyStart}:{pyStop}]</code>!
         </span>
       }
     >
@@ -584,7 +598,7 @@ function SubstringVsPythonExplorer() {
         </div>
 
         <svg
-          viewBox={`0 0 ${Math.max(460, word.length * 52 + 80)} 150`}
+          viewBox={`0 0 ${Math.max(520, 130 + word.length * 48 + 48)} 150`}
           className="w-full rounded-xl border border-line bg-surface-2 p-2"
           role="img"
           aria-label="Dual-indexed character strip comparing 1-based CIE positions with 0-based Python slice indices"

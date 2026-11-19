@@ -139,9 +139,9 @@ export function InteractiveTab({ topicId, onGoTab }: { topicId: string; onGoTab?
       ) : null}
 
       {widgets.length > 1 ? (
-        <nav aria-label="Explorables in this topic" className="nav-scroll -mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1">
+        <nav aria-label="Explorables in this topic" className="flex flex-wrap gap-1.5">
           {widgets.map((w) => (
-            <a key={w.id} href={`#w-${w.id}`} onClick={(e) => jumpTo(e, `w-${w.id}`)} className="chip shrink-0 whitespace-nowrap px-3 py-1.5 text-sm hover:bg-brand-soft hover:text-brand">
+            <a key={w.id} href={`#w-${w.id}`} onClick={(e) => jumpTo(e, `w-${w.id}`)} className="chip px-3 py-1.5 text-sm hover:bg-brand-soft hover:text-brand">
               {w.title}
             </a>
           ))}

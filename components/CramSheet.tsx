@@ -158,6 +158,10 @@ export function CramSheet({
 
   const totalMistakes = visiblePacks.reduce((s, p) => s + p.examMistakes.length + p.questionTraps.length, 0);
   const totalMustKnow = visiblePacks.reduce((s, p) => s + p.mustKnow.length, 0);
+  const totalChecked = visiblePacks.reduce(
+    (s, p) => s + p.mustKnow.filter((_, i) => !!checkedMap[`${p.id}:${i}`]).length,
+    0,
+  );
 
   return (
     <div className="space-y-6 pb-8">
@@ -170,7 +174,7 @@ export function CramSheet({
                   🚨 {totalMistakes} CIE 0478 Exam Traps &amp; Mark-Losers
                 </span>
                 <span className="chip border-0 bg-good-soft text-good">
-                  ✅ {totalMustKnow} Mark-Scheme Must-Knows
+                  ✅ {totalChecked}/{totalMustKnow} Must-Knows Checked
                 </span>
               </div>
               <h1 className="mt-2 text-2xl font-black sm:text-3xl">
@@ -302,9 +306,18 @@ export function CramSheet({
       )}
 
       {/* Per-Topic Cram Cards */}
+      {visiblePacks.length === 0 ? (
+        <div className="card p-6 text-center space-y-3">
+          <p className="font-extrabold">No exam notes match &ldquo;{query.trim()}&rdquo; across the selected topics.</p>
+          <p className="text-sm text-ink-2">Try clearing your keyword filter or selecting more Paper 1 / Paper 2 topics above.</p>
+          <button type="button" onClick={() => setQuery("")} className="btn btn-secondary btn-sm">
+            Clear search filter
+          </button>
+        </div>
+      ) : null}
       <div className="space-y-8">
         {visiblePacks.map((pack) => (
-          <article key={pack.id} className="card space-y-6 overflow-hidden p-5 sm:p-6">
+          <article key={pack.id} className="card space-y-6 overflow-hidden p-5 sm:p-6 print:shadow-none">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
               <div className="flex items-center gap-3">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-soft text-2xl" aria-hidden>
@@ -464,11 +477,11 @@ export function CramSheet({
                 </h3>
                 <div className="grid gap-2.5 sm:grid-cols-2">
                   {pack.keyFacts.map((f, i) => (
-                    <div key={i} className="rounded-xl border border-line bg-surface p-3 text-sm">
+                    <div key={i} className="min-w-0 rounded-xl border border-line bg-surface p-3 text-sm">
                       <div className="text-xs font-extrabold text-brand">
                         <RichInline text={f.name} />
                       </div>
-                      <Rich text={f.value} className="mt-0.5 text-sm font-semibold" />
+                      <Rich text={f.value} className="mt-0.5 overflow-x-auto text-sm font-semibold" />
                       {f.note ? (
                         <p className="mt-0.5 text-xs text-ink-2">
                           <RichInline text={f.note} />
