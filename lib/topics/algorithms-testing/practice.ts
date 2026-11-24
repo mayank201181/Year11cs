@@ -106,10 +106,10 @@ export const practice: TopicPractice = {
       question:
         "A shop worker enters a product price of `95.00` instead of `59.00` from a printed catalogue, where valid prices range from `1.00` to `500.00`. Which method could detect this human copying error?",
       options: [
-        "Range check",
-        "Type check",
+        "Range check (validation)",
+        "Type check (validation)",
         "Visual check (verification)",
-        "Presence check",
+        "Presence check (validation)",
       ],
       answerIndex: 2,
       hints: [

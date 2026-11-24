@@ -95,10 +95,10 @@ export const mcqPapers: Paper[] = [
         question:
           "In an Integrated Development Environment (IDE), what does the feature **prettyprinting** do?",
         options: [
-          "Sends source code to a laser printer with decorative page borders",
+          "Sends source code to a physical laser printer with decorative page borders and coloured headers",
           "Applies colour-coding to syntax keywords/strings and automatic indentation to make source code easier to read",
-          "Encrypts variable names so hackers cannot read the program",
-          "Translates high-level code into a standalone binary executable file",
+          "Encrypts variable names and comments into ciphertext so hackers cannot read the source code",
+          "Translates high-level source code into a standalone binary machine-code executable file for distribution",
         ],
         answerIndex: 1,
         hints: [
@@ -239,10 +239,10 @@ export const mcqPapers: Paper[] = [
         question:
           "What is the **exact security effect** of encrypting sensitive data before transmitting it across a public Wi-Fi network?",
         options: [
-          "It physically blocks packet sniffers from capturing any radio waves",
-          "It automatically deletes malware from the sender's SSD",
-          "It scrambles plaintext into unreadable ciphertext so that even if packets are intercepted, they cannot be understood without the decryption key",
-          "It stops DDoS botnets from sending requests to the router",
+          "It physically blocks wireless packet sniffers and eavesdroppers from capturing any radio waves over Wi-Fi",
+          "It automatically scans for and permanently deletes spyware or ransomware stored on the sender's internal SSD",
+          "It scrambles plaintext into unreadable ciphertext so intercepted packets cannot be understood without the decryption key",
+          "It prevents distributed botnets from flooding the Wi-Fi router with millions of fake DDoS connection requests",
         ],
         answerIndex: 2,
         hints: [
@@ -280,10 +280,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A student claims that a customer-service **chatbot running purely on a cloud server** is a 'robot'. Why would a CIE 0478 examiner award zero marks for calling the chatbot a physical robot?",
         options: [
-          "Because robots are never allowed to use electrical power",
-          "Because robots cannot be programmed using computers",
-          "Because a robot must possess a physical mechanical structure/framework with moving parts/actuators in addition to electrical components and programmability",
-          "Because chatbots only use assembly language rather than Python",
+          "Because physical robots are strictly mechanical devices that are never allowed to contain electrical components",
+          "Because robots must operate purely from fixed mechanical gears and cannot be programmed using computer code",
+          "Because a robot must have a physical mechanical framework with actuators in addition to electrical components and programmability",
+          "Because customer-service chatbots can only be written in low-level assembly language rather than Python",
         ],
         answerIndex: 2,
         hints: [
@@ -349,10 +349,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A CPU is halfway through decoding an instruction when a high-priority keyboard interrupt arrives. What does the CPU do **next**?",
         options: [
-          "Ignores the interrupt until the user restarts the Operating System",
-          "Finishes the current Fetch–Decode–Execute cycle, saves CPU register contents onto a stack in RAM, and loads the Interrupt Service Routine (ISR) address into the PC",
-          "Abandons the current instruction immediately mid-decode and wipes all CPU registers to zero",
-          "Transfers the keyboard driver from RAM permanently into ROM",
+          "Ignores the incoming keyboard interrupt completely until the user manually restarts the Operating System",
+          "Finishes the current FDE cycle, saves CPU register contents onto a stack in RAM, and loads the ISR address into the PC",
+          "Abandons the current instruction immediately mid-decode and permanently resets all CPU registers back to zero",
+          "Transfers the keyboard device driver from volatile RAM permanently into read-only ROM before resuming execution",
         ],
         answerIndex: 1,
         hints: [
@@ -370,10 +370,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Why does an Operating System require a **device driver** whenever a new model of graphics tablet is plugged into the computer?",
         options: [
-          "To convert high-voltage AC mains electricity into DC power for the USB port",
-          "To act as a firewall blocking incoming network packets on port 443",
+          "To convert high-voltage alternating current mains electricity into regulated +5V DC power for the USB port",
+          "To act as a hardware packet-filtering firewall blocking incoming network requests on encrypted HTTPS port 443",
           "To translate generic Operating System requests into the specific binary control instructions understood by that hardware device",
-          "To compress bitmap drawings using lossy JPEG compression",
+          "To compress raw stylus bitmap drawings automatically using lossy JPEG compression before saving to the SSD",
         ],
         answerIndex: 2,
         hints: [
@@ -412,10 +412,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A 200-line high-level program contains syntax errors on lines 15, 80, and 140. Contrast what happens when it is processed by a **compiler** versus an **interpreter**.",
         options: [
-          "Both translators ignore syntax errors and create an executable file anyway",
-          "The compiler fixes all three syntax errors automatically; the interpreter deletes line 15",
-          "The compiler scans all 200 lines without executing any code and outputs an error report listing lines 15, 80, and 140; the interpreter executes lines 1–14 and halts immediately at line 15",
-          "The compiler stops at line 15 and executes lines 1–14; the interpreter lists all three errors before running line 1",
+          "Both translators ignore syntax errors completely, execute lines 1–200 in sequence, and produce a standalone executable file anyway",
+          "The compiler automatically repairs all three syntax errors before running; the interpreter skips and deletes line 15 during execution",
+          "The compiler checks all 200 lines without running and reports errors on lines 15, 80, and 140; the interpreter runs lines 1–14 and halts at line 15",
+          "The compiler stops at line 15 after executing lines 1–14; the interpreter scans all 200 lines and lists all three errors before running line 1",
         ],
         answerIndex: 2,
         hints: [
@@ -475,10 +475,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Which statement about **persistent cookies** is true?",
         options: [
-          "They are stored on the user's secondary storage (SSD/HDD) until their expiry date or manual deletion, remembering preferences and login IDs across visits",
-          "They replace the need for DNS servers by storing every IP address on the World Wide Web",
-          "They are stored in volatile RAM and disappear the instant a browser tab closes",
-          "They are executable binary programs capable of replicating across a LAN like a worm",
+          "They are saved on secondary storage (SSD/HDD) until expiry or manual deletion, remembering preferences and logins across visits",
+          "They replace the need for DNS servers by storing the IPv4 and IPv6 addresses of every website on the World Wide Web",
+          "They are stored exclusively inside volatile RAM and are automatically deleted the instant a browser tab or window closes",
+          "They are standalone executable binary programs capable of self-replicating across a Local Area Network like a worm",
         ],
         answerIndex: 0,
         hints: [
@@ -580,9 +580,9 @@ export const mcqPapers: Paper[] = [
         question:
           "A hospital's patient files are suddenly locked into unreadable ciphertext by malware demanding payment in cryptocurrency within 48 hours. Which malware struck, and what is the **most reliable prior preparation** allowing recovery without paying?",
         options: [
-          "Trojan horse — solved by switching from GUI to CLI",
-          "Adware — solved by enabling prettyprinting in an IDE",
-          "Phishing — solved by clearing session cookies in RAM",
+          "Trojan horse — solved by switching the hospital servers from a GUI to a CLI",
+          "Adware — solved by enabling automatic prettyprinting inside an IDE editor",
+          "Phishing — solved by clearing temporary session cookies stored in volatile RAM",
           "Ransomware — solved by restoring clean data from regular offline/disconnected backups",
         ],
         answerIndex: 3,
@@ -649,10 +649,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Four programs are open simultaneously on a single-core laptop: a music player, a code editor, an anti-virus scan, and a web browser. How does the Operating System achieve **multitasking** on that single CPU core?",
         options: [
-          "It runs all four programs inside non-volatile ROM without using RAM",
-          "It compiles all four programs into a single HTML file",
+          "It loads and runs all four applications simultaneously inside non-volatile ROM without allocating any primary RAM",
+          "It compiles all four open applications into a single combined HTML document that executes in one browser thread",
           "It rapidly switches the CPU between processes using short time slices prioritized by the scheduler, creating the illusion of simultaneous execution",
-          "It physically splits the single ALU into four smaller sub-cores",
+          "It physically divides the single silicon Arithmetic Logic Unit into four independent hardware sub-cores on demand",
         ],
         answerIndex: 2,
         hints: [
@@ -670,10 +670,10 @@ export const mcqPapers: Paper[] = [
         question:
           "While the CPU is already executing the **Interrupt Service Routine (ISR)** for a mouse movement (low priority), a critical **power-supply failure interrupt** (very high priority) arrives. What happens in a priority-driven interrupt system?",
         options: [
-          "At the end of the current FDE cycle, the CPU pushes the mouse ISR's register state onto the stack, services the higher-priority power ISR first, then pops back to finish the mouse ISR",
-          "Both interrupts cancel each other out and reset the BIOS",
-          "The power-supply interrupt is discarded because only one interrupt can ever exist in RAM",
-          "The mouse ISR must finish printing 100 pages before the power interrupt is checked",
+          "After the current FDE cycle, the CPU pushes the mouse ISR's registers onto the stack, runs the power ISR first, then pops back to finish",
+          "Both hardware interrupts cancel each other out on the control bus and immediately force a cold reboot into the ROM BIOS",
+          "The power-supply interrupt is permanently discarded because only one interrupt signal can ever be queued inside RAM at once",
+          "The lower-priority mouse ISR must finish every remaining buffered peripheral task before any higher-priority interrupt is checked",
         ],
         answerIndex: 0,
         hints: [
@@ -712,9 +712,9 @@ export const mcqPapers: Paper[] = [
         question:
           "Which feature of an IDE underlines `prnit(\"Hello\")` in red with a syntax warning **while the programmer is still typing**, before they even click 'Run'?",
         options: [
-          "Asymmetric decryption",
-          "Assembler mnemonic mapping",
-          "Session cookie caching",
+          "Asymmetric public-key decryption",
+          "Assembler mnemonic opcode mapping",
+          "Session cookie browser caching",
           "Dynamic syntax checking / error diagnostics",
         ],
         answerIndex: 3,
@@ -733,10 +733,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Why is **High-Level Language** code described as **portable**, whereas **Assembly Language** code is **not portable**?",
         options: [
-          "High-level files are smaller than 1 byte so they fit on USB sticks",
-          "High-level code runs directly on the ALU with zero translation needed anywhere",
-          "Assembly code can only be stored on magnetic hard drives, never SSDs",
-          "High-level code is abstracted from hardware and can be compiled/interpreted for different CPU families, whereas Assembly mnemonics map directly to one specific CPU architecture's instruction set",
+          "High-level source files are always smaller than 1 byte so they fit easily on portable USB flash drives",
+          "High-level source code executes directly inside any CPU's ALU hardware with zero compiler or interpreter translation",
+          "Assembly source files can only be stored on stationary magnetic hard drives and cannot be copied onto portable SSDs",
+          "High-level code is abstracted from hardware for different CPUs, whereas Assembly maps directly to one CPU architecture's instruction set",
         ],
         answerIndex: 3,
         hints: [
@@ -775,10 +775,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A student says: *'A web browser's main job is to store all the world's websites on your laptop's hard drive.'* Which correction accurately states the main function of a **web browser**?",
         options: [
-          "It acts as the physical fibre-optic cable linking continents together",
-          "It converts analogue microphone sound waves into digital binary samples",
+          "It acts as the physical undersea fibre-optic cable infrastructure linking web servers across continents",
+          "It samples continuous analogue microphone sound waves and quantises them into digital binary audio files",
           "It requests web resources from remote web servers via HTTP/HTTPS and interprets/renders HTML to display web pages on screen",
-          "It translates low-level assembly mnemonics into binary machine code",
+          "It translates low-level assembly mnemonics one-to-one into binary machine code for the laptop's processor",
         ],
         answerIndex: 2,
         hints: [
@@ -838,10 +838,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Which combination represents true **Two-Factor Authentication (2FA)**?",
         options: [
-          "Entering a secret password (something you know) plus approving a one-time code on a smartphone or scanning a fingerprint (something you have / are)",
-          "Checking that a password is at least 12 characters long (length check)",
-          "Entering a username and then entering two different text passwords from memory",
-          "Typing the same password twice during account registration (double entry)",
+          "Entering a secret password (something you know) plus a one-time phone code or fingerprint (something you have or are)",
+          "Validating that a newly created account password contains at least 12 characters using an automated length check",
+          "Entering a public username followed by entering two separate secret text passwords recalled purely from memory",
+          "Typing the exact same text password twice into two boxes during account registration for double-entry verification",
         ],
         answerIndex: 0,
         hints: [
@@ -859,10 +859,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Why is **symmetric encryption** vulnerable when two strangers communicate over the Internet for the first time, and how does **asymmetric encryption** solve that exact weakness?",
         options: [
-          "Symmetric encryption shares a single secret key that risks being intercepted during transmission; asymmetric encryption encrypts with the recipient's public key so the secret private key never travels across the network",
-          "Symmetric encryption requires a robot actuator; asymmetric encryption uses a compiler",
-          "Symmetric encryption cannot scramble numbers; asymmetric encryption only scrambles numbers",
-          "Symmetric keys expire after 1 byte; asymmetric keys are stored inside session cookies",
+          "Symmetric uses one shared secret key that can be intercepted in transit; asymmetric encrypts with a public key so the private key never travels",
+          "Symmetric encryption requires a physical robotic actuator to scramble data; asymmetric encryption relies solely on a high-level compiler",
+          "Symmetric encryption can only scramble alphabetic text strings; asymmetric encryption is restricted strictly to integer numbers",
+          "Symmetric encryption keys expire after encrypting a single byte; asymmetric public and private keys are stored inside RAM session cookies",
         ],
         answerIndex: 0,
         hints: [
@@ -880,9 +880,9 @@ export const mcqPapers: Paper[] = [
         question:
           "How does a **firewall** protect a school's Local Area Network (LAN) connected to the Internet?",
         options: [
-          "It converts analogue light readings into digital temperature values",
-          "It translates high-level Python scripts into binary machine code",
-          "It physically cools overheated server CPUs during summer",
+          "It converts continuous analogue light-sensor readings from school corridors into digital temperature values via an ADC",
+          "It translates high-level Python scripts written by students into standalone binary machine-code executables for the LAN",
+          "It monitors server rack temperatures and physically cools overheated network CPUs using liquid cooling fans",
           "It inspects incoming and outgoing network packets against security rules/criteria and blocks unauthorised traffic, ports, or blocklisted IP addresses",
         ],
         answerIndex: 3,
@@ -901,10 +901,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Compare a **surgeon-guided robotic surgical arm** in an operating theatre with an **autonomous Mars rover** navigating craters on its own. How does CIE 0478 classify these two robots?",
         options: [
-          "The surgical arm is an independent robot; the Mars rover is a dependent robot",
-          "Neither is programmable, so neither counts as a robot",
-          "The surgical arm is a dependent robot (human directly interfaces/controls it); the Mars rover is an independent/autonomous robot (operates without direct human control)",
-          "Both are pure software Expert Systems with no mechanical frameworks",
+          "The surgical arm is an independent autonomous robot; the Mars rover is classified as a dependent human-guided robot",
+          "Neither machine can be programmed with computer software, so neither device meets the CIE definition of a robot",
+          "The surgical arm is a dependent robot (human-guided); the Mars rover is an independent/autonomous robot (no direct human control)",
+          "Both machines are pure cloud-based Expert Systems running software rules with no physical mechanical frameworks",
         ],
         answerIndex: 2,
         hints: [
@@ -922,10 +922,10 @@ export const mcqPapers: Paper[] = [
         question:
           "An automated car-manufacturing paint booth uses robotic arms 24 hours a day instead of human spray-painters. Which option correctly pairs **one valid advantage** and **one valid disadvantage** for the manufacturer?",
         options: [
-          "Advantage: no electricity needed; Disadvantage: human workers are exposed to more toxic fumes",
-          "Advantage: robots invent brand-new car designs unprompted; Disadvantage: paint dries slower",
-          "Advantage: consistent, high-precision finish 24/7 while keeping humans out of toxic paint fumes; Disadvantage: very high initial capital setup and specialist maintenance cost",
-          "Advantage: zero initial purchase cost; Disadvantage: robots get tired after 2 hours",
+          "Advantage: robotic arms require zero electrical power to run; Disadvantage: human workers are exposed to more toxic paint fumes",
+          "Advantage: factory robots autonomously invent brand-new car designs unprompted; Disadvantage: paint takes much longer to dry",
+          "Advantage: consistent 24/7 precision while keeping humans out of toxic fumes; Disadvantage: high initial setup and maintenance cost",
+          "Advantage: zero initial purchase or installation cost for the factory; Disadvantage: robotic arms suffer fatigue after two hours",
         ],
         answerIndex: 2,
         hints: [
@@ -943,10 +943,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A bank uses an AI fraud detector that flags unusual credit-card transactions in milliseconds. Over six months, fraudsters invent new spending patterns, and the AI updates its internal weights from newly labelled fraud cases so detection stays accurate **without engineers writing new `IF...THEN` rules**. Why is this **Machine Learning** rather than a traditional static **Expert System**?",
         options: [
-          "Because Machine Learning algorithms automatically adapt their own models/parameters from training data and experience, whereas a static Expert System relies on fixed human-coded rules until manually updated",
-          "Because Machine Learning runs without electrical components or CPUs",
-          "Because Expert Systems only work on assembly language mnemonics",
-          "Because Expert Systems cannot use a User Interface or Knowledge Base",
+          "Machine Learning adapts its own models from training data and experience, whereas a static Expert System relies on fixed human-coded rules",
+          "Machine Learning executes completely without electrical components or processors, whereas Expert Systems require multi-core CPUs",
+          "Expert Systems can only be implemented using low-level assembly mnemonics, whereas Machine Learning runs directly on raw HTML",
+          "Expert Systems cannot store domain facts in a Knowledge Base or interact with bank staff through a User Interface",
         ],
         answerIndex: 0,
         hints: [

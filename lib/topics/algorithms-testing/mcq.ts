@@ -515,9 +515,9 @@ export const mcqPapers: Paper[] = [
           "Why will a candidate lose marks on a CIE 0478 flowchart if they draw a Decision diamond `Count = 20?` with two exit arrows but no text next to the arrows?",
         options: [
           "Without `Yes`/`No` (or `True`/`False`) labels, it is impossible to tell which branch executes when the condition holds.",
-          "Decision diamonds may only have one exit arrow.",
-          "Flowcharts cannot contain numbers inside diamonds.",
-          "Count variables must be placed inside rounded terminators.",
+          "Decision diamonds in CIE 0478 flowcharts are only permitted to have a single exit arrow leaving the bottom corner.",
+          "Flowchart decision diamonds cannot contain numeric constants like `20` and must compare text strings instead.",
+          "Counter variables such as `Count` must only be tested inside rounded terminator ovals rather than diamonds.",
         ],
         answerIndex: 0,
         hints: [
@@ -556,7 +556,7 @@ export const mcqPapers: Paper[] = [
         question:
           "A password field requires between `8` and `16` characters inclusive. A tester enters a 7-character password `\"sun2026\"` and an 8-character password `\"moon2026\"`. What category of test data is this pair?",
         options: [
-          "Boundary test data (for the lower limit)",
+          "Boundary test data",
           "Extreme test data",
           "Normal test data",
           "Verification test data",
@@ -584,9 +584,9 @@ export const mcqPapers: Paper[] = [
           "A customer orders `3` laptops online, accidentally types `33` into the quantity box (where the shop's range check allows `1` to `50`), and skips reading the order summary screen. Why is `33` accepted?",
         options: [
           "Because `33` is reasonable within `1..50`, and validation cannot detect whether valid-looking data is accurate.",
-          "Because verification was used instead of validation.",
-          "Because a presence check overwrote the range check.",
-          "Because range checks only work on strings, not integers.",
+          "Because verification was used instead of validation, and verification accepts any integer typed by a user.",
+          "Because a presence check always overrides a range check whenever a non-blank value is entered into a form.",
+          "Because range checks in CIE algorithms only validate text string lengths rather than numeric integer values.",
         ],
         answerIndex: 0,
         hints: [
@@ -620,10 +620,10 @@ export const mcqPapers: Paper[] = [
         question:
           "During testing, a programmer discovers that users need to enter half-day bookings (`0.5`), which the original integer design rejected. The programmer returns to update the requirements and pseudocode before modifying the code. What property of the PDLC does this illustrate?",
         options: [
-          "Abstraction removes the need for the Coding stage.",
-          "Testing always happens before Analysis in the PDLC.",
+          "Abstraction removes the need for the Coding stage by generating executable programs directly from test data.",
+          "Testing always happens before Analysis in the PDLC so user requirements are decided after finding bugs.",
           "The PDLC is iterative, cycling back to earlier stages when testing reveals issues or new requirements.",
-          "Decomposition prevents any changes once Design finishes.",
+          "Decomposition locks all sub-systems permanently so requirements cannot be changed once Design finishes.",
         ],
         answerIndex: 2,
         hints: [
@@ -641,9 +641,9 @@ export const mcqPapers: Paper[] = [
         question:
           "A validation rule accepts integer ages from `18` to `65` inclusive. A student tests the program with `\"twenty\"`. Which category of test data is `\"twenty\"`?",
         options: [
-          "Boundary data",
-          "Extreme data",
-          "Normal data",
+          "Boundary test data",
+          "Extreme test data",
+          "Normal test data",
           "Abnormal (erroneous) data",
         ],
         answerIndex: 3,
@@ -722,7 +722,7 @@ export const mcqPapers: Paper[] = [
         options: [
           "Format check and Double entry",
           "Length check and Check digit",
-          "Presence check and Range check (plus Type check)",
+          "Presence check and Range check",
           "Visual check and Range check",
         ],
         answerIndex: 2,
@@ -762,10 +762,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Why do we include `Last ← Last - 1` at the end of each outer pass in an optimised ascending Bubble Sort?",
         options: [
-          "Because `FOR` loops in CIE pseudocode cannot use a constant upper bound.",
+          "Because `FOR` loops in CIE pseudocode cannot iterate with a fixed constant upper bound once an array exceeds ten items.",
           "Because each pass places the next largest unsorted element into its final position at the end of the array, avoiding redundant comparisons.",
-          "Because the first element of the array is guaranteed sorted after Pass 1.",
-          "Because Linear Search takes over once half the elements are sorted.",
+          "Because the first element at index 1 is always guaranteed to reach its final sorted position after Pass 1 finishes.",
+          "Because Linear Search automatically takes over sorting the remaining elements once half of the array has been swapped.",
         ],
         answerIndex: 1,
         hints: [
@@ -784,9 +784,9 @@ export const mcqPapers: Paper[] = [
           "Which statement best explains an advantage of **decomposition** when developing a large software project?",
         options: [
           "Different programmers can develop and test separate sub-systems concurrently, reducing development time and isolating bugs.",
-          "It eliminates the need for any testing stage in the PDLC.",
-          "It automatically encrypts user passwords in the database.",
-          "It converts high-level code directly into binary machine code.",
+          "Breaking a system into sub-systems completely eliminates the need for any testing or maintenance stage in the PDLC.",
+          "Modularising code automatically encrypts stored user passwords and sensitive records inside the application database.",
+          "Dividing tasks into separate subroutines converts high-level source code directly into binary machine code without translation.",
         ],
         answerIndex: 0,
         hints: [
@@ -804,10 +804,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A programmer writes `IF Score > 0 AND Score < 50 THEN OUTPUT \"Accepted\"` when the specification actually required integers from **`0` to `50` inclusive**. Which test data category is specifically designed to expose this `<` vs `<=` bug?",
         options: [
-          "Normal test data (such as `25`)",
-          "Large abnormal numbers (such as `999`)",
-          "Extreme / Boundary test data (such as `0` and `50`, or pairs `-1, 0` and `50, 51`)",
-          "Abnormal string test data (such as `\"fifty\"`)",
+          "Normal test data lying safely inside the range (such as `25`)",
+          "Large abnormal numbers far outside the range (such as `999`)",
+          "Extreme / Boundary test data at the limits (such as `0` and `50`)",
+          "Abnormal string test data of the wrong type (such as `\"fifty\"`)",
         ],
         answerIndex: 2,
         hints: [
@@ -846,10 +846,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Examine this Linear Search snippet on `Names[1:100]`:\n`Found ← FALSE`\n`FOR i ← 1 TO 100`\n`  IF Names[i] = Target THEN`\n`    Found ← TRUE`\n`  ELSE`\n`    Found ← FALSE`\n`  ENDIF`\n`NEXT i`\nWhy is the `ELSE Found ← FALSE` branch a serious logic error?",
         options: [
-          "It causes an infinite loop that never reaches `100`.",
+          "Resetting `Found` inside the `ELSE` branch causes an infinite loop that prevents `i` from ever reaching `100`.",
           "If `Target` is found at e.g. `Names[12]` and `Names[100]` does not match `Target`, later iterations overwrite `Found` back to `FALSE`!",
-          "`FOR` loops cannot contain `IF..ELSE` statements in CIE pseudocode.",
-          "`Found` must be declared as an `INTEGER` rather than a `BOOLEAN`.",
+          "`FOR` loops in CIE pseudocode cannot legally contain nested `IF..THEN..ELSE` selection blocks inside the loop body.",
+          "A search flag such as `Found` must always be declared as an `INTEGER` counter rather than a `BOOLEAN` variable.",
         ],
         answerIndex: 1,
         hints: [

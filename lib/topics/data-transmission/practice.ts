@@ -142,10 +142,10 @@ export const practice: TopicPractice = {
       guideRef: "parity-checksum-echo",
       question: "Why does a **2D Parity Block** improve upon a single parity bit per byte?",
       options: [
-        "It compresses every 8-bit byte down into a 4-bit nibble",
+        "It compresses every 8-bit byte down into a 4-bit nibble so transmission time is halved across the link",
         "It uses both horizontal row parity and a vertical parity byte to pinpoint the exact row and column of a single flipped bit",
-        "It prevents electromagnetic interference from entering unshielded cables",
-        "It guarantees detection of every possible 4-bit and 8-bit burst error",
+        "It prevents electromagnetic interference from entering unshielded cables during long-distance parallel transfers",
+        "It guarantees detection of every possible 4-bit and 8-bit burst error even when flips form a rectangle",
       ],
       answerIndex: 1,
       hints: [

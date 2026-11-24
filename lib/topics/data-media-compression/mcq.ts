@@ -286,9 +286,9 @@ export const mcqPapers: Paper[] = [
         question: "What is the role of an **Analogue-to-Digital Converter (ADC)** when recording sound through a microphone?",
         options: [
           "It samples the continuous analogue electrical signal at regular intervals and quantises each amplitude into binary",
-          "It converts binary numbers from RAM into sound waves for loudspeakers",
-          "It amplifies digital packets across Wi-Fi routers",
-          "It compresses MP3 files into ZIP archives automatically",
+          "It converts stored digital binary samples from RAM back into continuous analogue voltage waves for loudspeakers",
+          "It amplifies digital packets across Wi-Fi routers to extend wireless network range",
+          "It compresses MP3 audio streams into lossless ZIP archives automatically during playback",
         ],
         answerIndex: 0,
         hints: [
@@ -576,9 +576,9 @@ export const mcqPapers: Paper[] = [
         question: "Why does reducing **sample resolution** to `4` bits make music sound noticeably grainy and distorted?",
         options: [
           "Each sample amplitude is rounded to only 16 coarse levels, introducing large quantisation errors",
-          "Stereo channels swap left and right every 4 seconds",
-          "Frequencies above 4 Hz are blocked by the microphone",
-          "Only 4 samples are recorded across the entire song",
+          "Stereo left and right audio channels swap positions every 4 seconds during playback",
+          "Sound frequencies above 4 Hz are completely blocked by the microphone before sampling begins",
+          "Only 4 individual amplitude samples are recorded across the entire length of the song",
         ],
         answerIndex: 0,
         hints: [
@@ -609,7 +609,7 @@ export const mcqPapers: Paper[] = [
         difficulty: "warmup",
         guideRef: "bitmap-images",
         question: "How many distinct colours can be represented by **`24`-bit True Colour** (`8` bits each for Red, Green, and Blue)?",
-        options: ["24", "65,536", "16,777,216", "256"],
+        options: ["24 colours", "65,536 colours", "16,777,216 colours", "256 colours"],
         answerIndex: 2,
         hints: ["Compute {{2^24 = 256 * 256 * 256}}."],
         explanation:
@@ -716,10 +716,10 @@ export const mcqPapers: Paper[] = [
         guideRef: "lossless-lossy-compression",
         question: "Why does an e-commerce website store product photographs as **lossy `JPEG`** rather than uncompressed `24`-bit `BMP`?",
         options: [
-          "Much smaller file sizes load faster for shoppers and consume far less server storage and mobile bandwidth with negligible visible difference",
-          "JPEG increases image resolution beyond the camera's original pixel count",
-          "Uncompressed BMP files cannot display colour on web browsers",
-          "JPEG lets the original uncompressed raw sensor bits be recovered later",
+          "Smaller file sizes load faster for shoppers and use far less server storage and bandwidth with negligible visible loss",
+          "JPEG increases image resolution beyond the camera's original pixel count by adding extra pixels",
+          "Uncompressed 24-bit BMP files cannot store RGB colour values or render inside standard web browsers",
+          "JPEG stores lossless pixel grids so the exact original uncompressed camera sensor bits can always be recovered later",
         ],
         answerIndex: 0,
         hints: [

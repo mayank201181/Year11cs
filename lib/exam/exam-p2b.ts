@@ -143,9 +143,9 @@ export const paper: ExamPaper = {
       question: "How is an **XOR** gate visually distinguished from an **OR** gate on a CIE 0478 logic circuit diagram?",
       options: [
         "XOR has an extra curved line parallel to the curved input side (a double-curved back), with NO circle at the output",
-        "XOR is an OR shape with a small circle at the output",
-        "XOR is drawn as a square box labelled `=1`",
-        "XOR is a flat-backed D-shape with a small circle at the output",
+        "XOR uses the exact same single-curved OR body shape, distinguished only by a small inversion circle at the output",
+        "XOR is always drawn as a rectangular box with straight vertical edges and the label `=1` instead of curved arcs",
+        "XOR is drawn as a flat-backed D-shaped body with a small inversion circle placed directly at the single output tip",
       ],
       answerIndex: 0,
       hints: [
@@ -325,10 +325,10 @@ export const paper: ExamPaper = {
       difficulty: "warmup",
       question: "A hospital database stores a patient's **telephone number** such as `\"+65 6778 0999\"` or `\"01223 555123\"` (which starts with `0` or `+` and is never used in arithmetic). Which CIE 0478 data type **must** be chosen, and why?",
       options: [
-        "`REAL`, because spaces act like decimal points",
-        "`CHAR`, because `CHAR` stores strings of unlimited length",
+        "`REAL`, because spaces and the `+` country-code prefix act like decimal points separating whole and fractional parts",
+        "`CHAR`, because the `CHAR` data type holds variable-length text strings containing unlimited digits, spaces, and symbols",
         "`STRING` (or `TEXT`), because an `INTEGER` would strip any leading zero (`0`), reject `+` or spaces, and telephone numbers are never used in calculations",
-        "`INTEGER`, because telephone numbers contain digits from 0 to 9",
+        "`INTEGER`, because telephone numbers consist primarily of whole digits from 0 to 9 and cannot contain alphabetic letters",
       ],
       answerIndex: 2,
       hints: ["What happens if you store `07700900123` as an `INTEGER`? The leading `0` disappears!"],

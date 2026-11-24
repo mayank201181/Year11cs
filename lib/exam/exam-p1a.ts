@@ -145,10 +145,10 @@ export const paper: ExamPaper = {
       difficulty: "warmup",
       question: "Why was **Unicode** developed to replace **ASCII** for representing text across modern operating systems and websites?",
       options: [
-        "Unicode uses fewer bits per character than ASCII so text files take less storage space",
-        "ASCII can only be processed by compilers whereas Unicode is required by interpreters",
-        "ASCII uses only 7 or 8 bits (128 or 256 characters), whereas Unicode uses up to 32 bits per character to represent thousands of global scripts and emojis",
-        "Unicode automatically compresses text files using lossy Run-Length Encoding",
+        "Unicode uses fewer bits per character than ASCII so multilingual documents take significantly less primary and secondary storage",
+        "ASCII can only be processed by offline compilers whereas Unicode is strictly required by web browsers and line-by-line interpreters",
+        "ASCII uses only 7 or 8 bits (128 or 256 characters), whereas Unicode uses up to 32 bits to represent thousands of global scripts and emojis",
+        "Unicode automatically compresses plain-text files into binary tables using lossy Run-Length Encoding before saving them to storage",
       ],
       answerIndex: 2,
       hints: [
@@ -403,10 +403,10 @@ export const paper: ExamPaper = {
       difficulty: "core",
       question: "What happens when a computer relies heavily on **virtual memory** because physical RAM is full and many large applications keep switching focus?",
       options: [
-        "The CPU clock speed permanently increases to compensate for the full RAM",
-        "Inactive pages are moved into ROM so the operating system runs faster than normal",
+        "The CPU clock speed permanently increases to compensate for full RAM, doubling the fetch-decode-execute rate during heavy multitasking",
+        "Inactive program pages are copied into permanent ROM so the operating system can execute applications faster than from physical RAM",
         "Pages of data are swapped so frequently between RAM and the much slower HDD/SSD that **disk thrashing** occurs, severely slowing or freezing the system",
-        "The MAC address of the Network Interface Card is overwritten by dynamic paging",
+        "The hardware MAC address of the Network Interface Card is overwritten by dynamic paging whenever active software exceeds RAM capacity",
       ],
       answerIndex: 2,
       hints: [

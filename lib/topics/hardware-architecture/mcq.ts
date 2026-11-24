@@ -245,9 +245,9 @@ export const mcqPapers: Paper[] = [
           "Why can a single-layer **Blu-ray** disc (`~25 GiB`) store roughly five times as much data as a single-layer **DVD** (`~4.7 GiB`) of the exact same physical diameter?",
         options: [
           "Blu-ray uses a shorter-wavelength blue-violet laser (405 nm) instead of a red laser (650 nm), allowing smaller, more tightly packed pits and lands.",
-          "Blu-ray uses floating-gate NAND transistors embedded inside the polycarbonate plastic.",
-          "Blu-ray uses concentric magnetic sectors rather than an optical spiral track.",
-          "Blu-ray discs spin in reverse using magnetic read/write heads on both sides simultaneously.",
+          "Blu-ray stores binary charges inside microscopic floating-gate NAND transistors embedded within the polycarbonate plastic disc.",
+          "Blu-ray organises its surface into concentric magnetic tracks divided into sectors rather than using a single optical spiral track.",
+          "Blu-ray drives spin discs in reverse using twin magnetic read/write actuator heads on both surfaces simultaneously.",
         ],
         answerIndex: 0,
         hints: [
@@ -355,10 +355,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A student upgrades a laptop from a **2-core 3.0 GHz** CPU to a **4-core 3.0 GHz** CPU (same cache size), expecting a single-threaded Python script to finish in **half the time**. Why does execution time barely change?",
         options: [
-          "Extra cores reduce the width of the Address Bus by half, halving addressable RAM.",
-          "A 4-core processor automatically halves its clock speed to 1.5 GHz whenever all cores are powered.",
-          "Sequential instructions in a single-threaded script depend on earlier steps and cannot be split across multiple cores, plus cores incur inter-core communication overhead.",
-          "Additional cores only speed up ROM bootstrap checks and cannot execute instructions stored in RAM.",
+          "Adding extra processor cores cuts the physical width of the unidirectional Address Bus in half, halving addressable main RAM.",
+          "A 4-core processor automatically halves each core's clock frequency to 1.5 GHz whenever all four cores are powered simultaneously.",
+          "Sequential instructions in a single-threaded script depend on earlier steps and cannot be split across cores, plus inter-core overhead.",
+          "Additional processor cores only accelerate non-volatile ROM bootstrap checks and cannot execute instructions fetched from RAM.",
         ],
         answerIndex: 2,
         hints: [
@@ -377,9 +377,9 @@ export const mcqPapers: Paper[] = [
           "Which risk is directly caused by **overclocking** a CPU beyond its manufacturer-rated clock frequency?",
         options: [
           "Instructions execute out of sync before the previous operation finishes (causing crashes/corruption) alongside dangerous overheating.",
-          "DRAM transforms into SRAM and halves main memory capacity.",
-          "The unidirectional Address Bus reverses direction and overwrites `PC`.",
-          "ROM loses its non-volatility and erases the BIOS firmware.",
+          "Capacitor-based DRAM permanently transforms into SRAM flip-flops and cuts the computer's main memory capacity in half.",
+          "The unidirectional Address Bus reverses electrical direction and continuously overwrites the Program Counter (`PC`) register.",
+          "Non-volatile ROM loses its permanent firmware retention and erases the bootstrap loader whenever clock speed exceeds 4 GHz.",
         ],
         answerIndex: 0,
         hints: [
@@ -460,10 +460,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Which statement accurately describes two genuine technical advantages of **QR codes** over traditional **1D barcodes** at an airport boarding gate?",
         options: [
-          "QR codes store data magnetically so they still work in complete darkness without a camera.",
-          "QR codes use volatile DRAM cells embedded in paper to update flight gates automatically.",
-          "QR codes hold thousands of characters (encoding full URLs/boarding data without a database lookup) and include built-in error correction if partially damaged.",
-          "QR codes require a specialized red laser scanner and can only be read upright.",
+          "QR codes store binary domains magnetically in metallic ink so scanners can still read them in complete darkness without any optical camera.",
+          "QR codes contain microscopic volatile DRAM cells embedded inside boarding-pass paper to update departure gate numbers automatically.",
+          "QR codes hold thousands of characters directly without a database lookup and include built-in error correction if partially damaged.",
+          "QR codes require a specialized 650 nm red laser barcode wand and can only decode successfully when held strictly upright.",
         ],
         answerIndex: 2,
         hints: [
@@ -588,7 +588,7 @@ export const mcqPapers: Paper[] = [
         options: [
           "Offline optical storage",
           "Local volatile cache",
-          "Hybrid cloud (combining private cloud for sensitive patient records with public cloud for public brochures)",
+          "Hybrid cloud",
           "Public cloud only",
         ],
         answerIndex: 2,
@@ -628,10 +628,10 @@ export const mcqPapers: Paper[] = [
         question:
           "When a **router** receives a data packet arriving from a home LAN destined for an overseas web server, how does it decide where to send the packet next?",
         options: [
-          "It converts analogue telephone tones into digital bits without reading any addresses.",
-          "It reads the payload's HTML text and broadcasts the packet to every device on the LAN.",
-          "It overwrites the sender's factory NIC MAC address permanently in ROM.",
-          "It inspects the destination IP address in the packet header and consults its routing table to forward the packet toward the fastest, least-congested next hop.",
+          "It converts continuous analogue telephone tones into digital binary packets without inspecting any header IP addresses.",
+          "It opens and reads the payload's HTML text and broadcasts identical copies of the packet to every device on the LAN.",
+          "It permanently overwrites the sender's factory-assigned 48-bit NIC MAC address inside ROM before forwarding the packet.",
+          "It inspects the destination IP address in the header and consults its routing table to forward the packet to the best next hop.",
         ],
         answerIndex: 3,
         hints: [
@@ -676,10 +676,10 @@ export const mcqPapers: Paper[] = [
         question:
           "During execution of a conditional branch instruction `JMP 400` stored at address `212`, `PC` was incremented to `213` during the **Fetch** stage. If the branch condition is **TRUE**, what happens during the **Execute** stage?",
         options: [
-          "`MAR` increments `213` to `214` and ignores `400`.",
-          "The Data Bus becomes unidirectional so `400` can be added to `ACC`.",
+          "`MAR` automatically increments `213` to `214` and discards the target address `400` without branching.",
+          "The bidirectional Data Bus becomes unidirectional so the literal operand `400` can be added directly into `ACC`.",
           "The address `400` is written into `PC` (overwriting `213`), so the next Fetch cycle reads from address `400`.",
-          "`CIR` is cleared to `0` and `PC` stays at `213`.",
+          "`CIR` is cleared to `0` immediately while `PC` stays fixed at `213` for the rest of the running program.",
         ],
         answerIndex: 2,
         hints: [
@@ -697,10 +697,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A CPU designer widens the **Address Bus** from `20` bits to `24` bits and widens the **Data Bus** from `16` bits to `32` bits. What is the exact combined hardware effect?",
         options: [
-          "Addressable memory locations increase by a factor of `4`, and `2` bytes are transferred per bus read.",
-          "Addressable memory locations increase by a factor of `16` ({{2^4}}), and twice as many bits (`32` vs `16`) can be transferred simultaneously per memory operation.",
-          "Addressable memory locations increase by a factor of `2`, and the Control Bus becomes unidirectional.",
-          "Addressable memory locations increase by `+4` bytes, and clock speed doubles.",
+          "Addressable memory locations increase by a factor of `4`, and `2` bytes (`16` bits) are transferred per memory bus read.",
+          "Addressable memory locations increase by a factor of `16` ({{2^4}}), and twice as many bits (`32` vs `16`) transfer per memory operation.",
+          "Addressable memory locations increase by a factor of `2`, and the bidirectional Control Bus becomes strictly unidirectional.",
+          "Addressable memory locations increase by only `+4` extra bytes, while the CPU system clock speed doubles automatically.",
         ],
         answerIndex: 1,
         hints: [
@@ -739,10 +739,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A smart street-lamp controller turns lamps ON when ambient dusk light falls below `50 lux` and OFF above `80 lux`. A student claims: *'Because the street lamp shines light into the street, it is a monitoring system, not a control system.'* Which critique is **most accurate** on CIE 0478?",
         options: [
-          "The student is wrong because street lamps use pH sensors rather than light sensors.",
-          "The student is right because light sensors output digital signals directly without an ADC.",
-          "The student is right because street lamps use LEDs instead of motors.",
-          "The student is wrong: the microprocessor controls a relay/switch actuator to turn the lamp ON/OFF based on light-sensor comparisons (and engineers shield/aim the sensor upward so the lamp's own glare doesn't immediately trick the sensor into turning itself off!).",
+          "The student is wrong because automated street lamps rely on pH and humidity sensors rather than ambient light sensors.",
+          "The student is right because analogue light sensors transmit digital lux values directly to the CPU without needing an ADC.",
+          "The student is right because street lamps switch solid-state LEDs electronically rather than moving mechanical electric motors.",
+          "The student is wrong: the microprocessor triggers a relay/switch actuator to turn the lamp ON/OFF from light-sensor comparisons.",
         ],
         answerIndex: 3,
         hints: [
@@ -760,10 +760,10 @@ export const mcqPapers: Paper[] = [
         question:
           "How do **thermal bubble** and **piezoelectric** inkjet printheads differ in the way they eject microscopic droplets of ink?",
         options: [
-          "Thermal bubble heats a tiny resistor to vaporise ink into an expanding bubble; piezoelectric applies an electric charge to a crystal behind the nozzle so it vibrates and pushes ink out.",
-          "Thermal bubble freezes ink with Peltier coolers; piezoelectric melts solid wax sticks.",
-          "Thermal bubble uses a laser drum; piezoelectric uses a spinning colour wheel.",
-          "Thermal bubble prints an entire A4 page in one flash; piezoelectric requires powdered toner.",
+          "Thermal bubble heats a tiny resistor to vaporise ink into an expanding bubble; piezoelectric applies voltage to flex a crystal behind the nozzle.",
+          "Thermal bubble freezes liquid ink droplets using Peltier coolers; piezoelectric melts solid coloured wax sticks onto the page.",
+          "Thermal bubble scans a negatively charged laser drum; piezoelectric projects white light through a spinning RGB colour wheel.",
+          "Thermal bubble exposes an entire A4 page in a single UV flash; piezoelectric fuses dry powdered toner onto the paper with heated rollers.",
         ],
         answerIndex: 0,
         hints: [
@@ -824,9 +824,9 @@ export const mcqPapers: Paper[] = [
           "Why must **DRAM** cells be **refreshed** thousands of times every second, whereas **SSD NAND flash** cells retain data for years with the power completely off?",
         options: [
           "DRAM stores each bit as charge on a tiny leaky capacitor that discharges rapidly, whereas SSD floating gates are surrounded by an insulating oxide layer that traps electrons.",
-          "DRAM uses volatile red lasers, whereas SSDs use permanent electromagnets.",
-          "DRAM stores bits on spinning platters that slow down due to friction, whereas SSDs use SRAM flip-flops.",
-          "DRAM is secondary storage exposed to air, whereas SSDs are sealed inside the CPU's ALU.",
+          "DRAM uses volatile 650 nm red optical lasers that fade when power drops, whereas SSDs permanently align magnetic north–south domains with electromagnets.",
+          "DRAM stores binary bits on spinning glass platters that slow down due to air friction, whereas SSDs rely on battery-backed SRAM flip-flops.",
+          "DRAM is external secondary storage exposed directly to room air, whereas SSD flash memory chips are sealed permanently inside the CPU's ALU.",
         ],
         answerIndex: 0,
         hints: [
@@ -844,10 +844,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Inside solid-state flash memory, some embedded systems use **NOR** flash rather than **NAND** flash to execute boot code. How does **NOR** flash compare to **NAND** flash?",
         options: [
-          "NOR flash is volatile and loses firmware at shutdown.",
-          "NOR flash has spinning platters and is much cheaper per GiB than NAND.",
-          "NOR flash wires cells in parallel allowing faster random byte-level read access, but costs more per GiB and has lower storage density than NAND.",
-          "NOR flash uses 650 nm red optical lasers to read pits.",
+          "NOR flash is volatile primary memory that loses all stored boot firmware immediately whenever the computer shuts down.",
+          "NOR flash stores bits magnetically on spinning platters and therefore costs significantly less per GiB than NAND flash.",
+          "NOR flash wires cells in parallel for faster random byte-level reads, but costs more per GiB and has lower density than NAND.",
+          "NOR flash uses a 650 nm red optical laser to read microscopic pits and lands along a single continuous spiral track.",
         ],
         answerIndex: 2,
         hints: [
@@ -928,10 +928,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A student says: *'When RAM fills up, virtual memory speeds up the computer because SSDs hold 1 TiB whereas RAM only holds 8 GiB.'* Why is this statement **wrong**?",
         options: [
-          "Virtual memory only works on optical CD-ROM drives.",
-          "Virtual memory is stored in CPU L1 SRAM cache, which is smaller than RAM.",
-          "Virtual memory prevents crashes when RAM is full, but it is ALWAYS slower than physical RAM because secondary storage has much higher latency and sits off the primary memory bus.",
-          "Virtual memory deletes the operating system to make space.",
+          "Virtual memory can only swap inactive pages onto removable optical CD-ROM discs rather than internal solid-state drives.",
+          "Virtual memory is actually allocated inside the CPU's L1 SRAM cache, which holds far less data than main physical RAM.",
+          "Virtual memory prevents crashes when RAM fills up, but it is always slower than physical RAM because secondary storage has higher latency.",
+          "Virtual memory works by permanently deleting parts of the operating system kernel from primary RAM to free up space.",
         ],
         answerIndex: 2,
         hints: [

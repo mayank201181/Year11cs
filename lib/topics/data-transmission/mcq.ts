@@ -94,9 +94,9 @@ export const mcqPapers: Paper[] = [
         guideRef: "transmission-methods",
         question: "Why is **serial** data transmission more reliable than **parallel** data transmission over a `25`-metre external cable?",
         options: [
-          "Serial transmission never needs any error detection",
-          "Serial sends 8 bits simultaneously so interference cancels out",
-          "Serial uses thicker 25-wire ribbon cables that block magnetism",
+          "Serial transmission never needs any parity checks or checksums over long external cables",
+          "Serial sends 8 bits simultaneously down parallel wires so electromagnetic interference cancels out",
+          "Serial uses thicker 25-wire ribbon cables wrapped in copper shielding that completely blocks noise",
           "Bits travel one at a time along a single channel so they cannot arrive out of order due to data skew",
         ],
         answerIndex: 3,
@@ -228,9 +228,9 @@ export const mcqPapers: Paper[] = [
         question:
           "In **Automatic Repeat Query (ARQ)**, what happens if a transmitted packet disappears completely in transit so the receiver never receives anything?",
         options: [
-          "The sender permanently deletes the file after waiting one microsecond",
-          "The receiver sends a negative acknowledgement immediately",
-          "The router reconstructs the missing payload from its parity bit",
+          "The sender permanently deletes the remaining file packets after waiting one microsecond for a reply",
+          "The receiver detects the missing sequence gap right away and sends a negative acknowledgement immediately",
+          "The intermediate router reconstructs the missing packet payload automatically from its stored parity bit",
           "The sender's timeout expires without receiving a positive acknowledgement, so the sender automatically retransmits the packet",
         ],
         answerIndex: 3,
@@ -255,10 +255,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A document is split into `5` packets (`P1` to `P5`) and sent via packet switching. They arrive at the destination in the order `P3, P1, P5, P2, P4`. Why did this happen, and how is the document restored?",
         options: [
-          "The USB driver inverted the packets; an echo check reverses them",
+          "The host computer's USB driver inverted the packet order; an echo check reverses them back to the original sequence",
           "Routers sent packets along different routes independently; the receiver reorders them using the packet sequence number in each header",
-          "Full-duplex collisions scrambled the payload; parity bits re-number them",
-          "Parallel data skew shuffled the packets; the trailer's hop counter sorts them",
+          "Full-duplex collisions scrambled the payload order; vertical parity bits automatically re-number every arriving packet",
+          "Parallel data skew shuffled the packets in transit; the trailer's hop counter sorts them back into numerical order",
         ],
         answerIndex: 1,
         hints: [
@@ -338,9 +338,9 @@ export const mcqPapers: Paper[] = [
         question: "Where inside a computer system is **parallel** data transmission STILL preferred over serial data transmission?",
         options: [
           "Across internal CPU and motherboard buses over millimetres where high-speed simultaneous transfer has negligible skew",
-          "Transmitting web pages between continents under the ocean",
-          "Connecting a USB flash drive via a 2-metre cable",
-          "Connecting a wireless mouse across a classroom",
+          "Transmitting web pages and video streams between continents across long undersea fibre-optic cables",
+          "Connecting an external USB flash drive to a laptop via a standard 2-metre shielded peripheral cable",
+          "Connecting a battery-powered wireless mouse and keyboard to a desktop across a classroom desk",
         ],
         answerIndex: 0,
         hints: [
@@ -442,9 +442,9 @@ export const mcqPapers: Paper[] = [
         question: "Why is an **echo check** considered unreliable for proving that the receiver holds uncorrupted data?",
         options: [
           "If the returned data differs from the original, the sender cannot tell whether the error happened on the outward journey or on the return journey",
-          "Echo checks require manual human visual verification on screen",
-          "Echo checks only work on 4-bit nibbles, not 8-bit bytes",
-          "The receiver deletes its copy of the data as soon as it echoes it back",
+          "Echo checks always require manual human visual verification on a monitor screen before any byte is accepted",
+          "Echo checks can only validate 4-bit nibbles on simplex links and cannot compare full 8-bit transmitted bytes",
+          "The receiver deletes its entire copy of the incoming data buffer the instant it sends the echo copy back",
         ],
         answerIndex: 0,
         hints: [
@@ -461,10 +461,10 @@ export const mcqPapers: Paper[] = [
         guideRef: "parity-checksum-echo",
         question: "Which statement accurately describes how a **checksum** detects transmission errors?",
         options: [
-          "The user types the block of bytes twice and the OS compares both keyboard entries",
-          "Each byte has its leftmost bit set so the count of 1s is odd",
-          "Every router subtracts 1 from the checksum until it reaches 0",
-          "A summary value is calculated from a block of bytes by the sender and transmitted with the block; the receiver recalculates it using the same algorithm and compares the two checksums",
+          "The operator types the block of bytes twice from a source document and the operating system compares both keyboard entries for discrepancies",
+          "Each transmitted byte has its leftmost bit set to 0 or 1 so the total count of 1-bits across every single byte is always odd",
+          "Every router along the path subtracts 1 from the checksum counter in the packet trailer and discards the packet once it reaches 0",
+          "The sender calculates a summary value from a block of bytes and sends it along; the receiver recalculates it and compares both values",
         ],
         answerIndex: 3,
         hints: [
@@ -513,9 +513,9 @@ export const mcqPapers: Paper[] = [
         question: "Which combination of mechanisms is used by **Automatic Repeat Query (ARQ)** to control transmission errors?",
         options: [
           "Error-detection code (such as CRC), positive/negative acknowledgements, and a timeout timer",
-          "Double entry verification and visual screen checks",
-          "Parallel ribbon cables and voltage-change driver loading",
-          "Logical left shifts and Two's Complement inversion",
+          "Double entry verification at the keyboard combined with manual visual screen checks",
+          "Multi-wire parallel ribbon cables paired with voltage-change device driver loading",
+          "Logical left bit shifts combined with Two's Complement sign-bit inversion checks",
         ],
         answerIndex: 0,
         hints: [
@@ -532,10 +532,10 @@ export const mcqPapers: Paper[] = [
         guideRef: "usb-interface",
         question: "Inside a standard `4`-wire shielded USB cable, two wires (`D+` and `D−`) carry serial data. What is the purpose of the other two wires?",
         options: [
-          "They store the device driver permanently inside copper coils",
-          "They carry two extra parallel bits to triple the byte width",
+          "They store the peripheral's device driver permanently inside shielded copper coils",
+          "They carry two extra parallel data bits simultaneously to triple the byte transfer width",
           "They provide `+5V` DC power and Earth/Ground so connected small devices can be powered or charged",
-          "They act as optical fibres for laser Blu-ray signals",
+          "They act as duplex glass optical fibres dedicated to high-speed laser Blu-ray signals",
         ],
         answerIndex: 2,
         hints: [
@@ -580,10 +580,10 @@ export const mcqPapers: Paper[] = [
         question:
           "When a receiving computer checks a packet's **trailer**, how does the **Cyclic Redundancy Check (CRC)** reveal that the payload was corrupted during packet switching?",
         options: [
-          "The sender's IP address no longer matches the router's MAC address",
+          "The sender's IP address stored in the packet header no longer matches the intermediate router's physical MAC address",
           "The receiver recalculates the check value from the received payload bits and finds it does not match the CRC value stored in the trailer",
-          "The payload length automatically doubles to 128 KiB",
-          "The hop counter in the header turns negative",
+          "The payload length automatically doubles to 128 KiB whenever a single bit flips during transmission across a network link",
+          "The hop counter inside the packet header turns into a negative Two's Complement integer after passing through a noisy switch",
         ],
         answerIndex: 1,
         hints: [
@@ -623,9 +623,9 @@ export const mcqPapers: Paper[] = [
           "Modern external interfaces like **USB 3** and **PCIe / SATA** switched from wide parallel ribbon cables to **serial** lanes, yet achieve *higher* real-world transfer speeds than old parallel cables. Why?",
         options: [
           "Eliminating inter-wire data skew allows serial links to be clocked at vastly higher frequencies without bits overlapping neighbour bytes",
-          "Serial cables send 64 bits simultaneously down one copper wire at 1 Hz",
-          "Serial cables skip packet headers, trailers, and error detection altogether",
-          "Parallel wires can only ever transmit binary 0s and never binary 1s",
+          "Serial cables transmit 64 bits simultaneously side-by-side down a single copper conductor at a fixed 1 Hz clock rate",
+          "Serial interfaces skip packet headers, trailers, and all error-detection algorithms to cut transmission overhead to zero",
+          "Parallel ribbon wires can only transmit binary 0s over external cables and require a separate serial wire for binary 1s",
         ],
         answerIndex: 0,
         hints: [
@@ -643,10 +643,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A user plugs a brand-new model of graphics tablet into a laptop's USB port for the first time. After detecting the voltage change and identifying the device, the operating system cannot find a matching driver locally. What happens next?",
         options: [
-          "The graphics tablet rewrites the CPU's instruction set in ROM",
-          "The connection switches from USB serial to Centronics 8-bit parallel",
+          "The graphics tablet directly rewrites the laptop CPU's native instruction set stored inside non-volatile ROM",
+          "The connection automatically switches from asynchronous USB serial mode into Centronics 8-bit parallel mode",
           "The operating system prompts the user to download/install the appropriate device driver (or fetches it automatically online)",
-          "The USB port permanently disables itself to protect RAM",
+          "The USB host controller permanently disables the port hardware to protect active programs in primary RAM",
         ],
         answerIndex: 2,
         hints: [
@@ -744,10 +744,10 @@ export const mcqPapers: Paper[] = [
         question:
           "A complete `13`-digit ISBN-13 code `9 7 8 0 5 2 1 6 8 0 4 6 2` is scanned at a library desk. How does the computer verify whether all `13` digits form a valid ISBN-13?",
         options: [
-          "It counts whether there are an odd number of 9s in the code",
+          "It counts whether there is an odd number of digit 9s across the 13-digit barcode before accepting the book",
           "It sums the 7 odd-positioned digits plus 3 times the sum of the 6 even-positioned digits, and checks that the total MOD 10 equals 0",
-          "It checks whether all 13 digits add up to an even number",
-          "It echoes the 13 digits back to the publisher's web server over ARQ",
+          "It adds all 13 digits together with equal weight of 1 and checks whether the unweighted sum is an even number",
+          "It echoes all 13 scanned digits back to the publisher's remote web server over an ARQ timeout link for verification",
         ],
         answerIndex: 1,
         hints: [
@@ -764,10 +764,10 @@ export const mcqPapers: Paper[] = [
         guideRef: "check-digits-arq",
         question: "Which of the following errors CANNOT be detected by a check digit on an order form?",
         options: [
-          "Typing digit 7 instead of digit 4 in an item code",
-          "Leaving out one digit from the middle of a 10-digit code",
-          "Swapping two neighbouring digits from 38 to 83",
-          "Accidentally typing a completely different customer's VALID account number (including that other customer's matching check digit)",
+          "Typing a single wrong digit such as 7 instead of 4 inside an item code while keeping the original check digit",
+          "Accidentally omitting one digit from the middle of a 10-digit product code before submitting the order form",
+          "Swapping two neighbouring digits from 38 to 83 (a transposition error) in a weighted barcode number",
+          "Accidentally typing a different customer's valid account number along with that customer's matching check digit",
         ],
         answerIndex: 3,
         hints: [
@@ -821,10 +821,10 @@ export const mcqPapers: Paper[] = [
         guideRef: "check-digits-arq",
         question: "Why do practical **ARQ** protocols enforce a **pre-set maximum number of retransmission attempts** rather than retrying forever?",
         options: [
-          "Because parity bits wear out after three calculations",
-          "Because routers delete all IPv4 addresses after five seconds",
-          "Because packet sequence numbers can only count up to 3 in binary",
-          "So that if a network cable is physically unplugged or dead, the sender stops resending endlessly, aborts cleanly, and reports a connection timeout error",
+          "Because parity bits inside network interface cards wear out permanently after three error-checking calculations",
+          "Because routers automatically delete all stored IPv4 routing entries after five seconds of continuous traffic",
+          "Because packet sequence numbers in the header only use 2 bits and therefore cannot count beyond 3 in binary",
+          "So that if a network link is dead or unplugged, the sender stops resending endlessly and reports a connection timeout error",
         ],
         answerIndex: 3,
         hints: [
@@ -842,10 +842,10 @@ export const mcqPapers: Paper[] = [
         question:
           "Which comparison accurately matches **when** each error-checking technique is used in CIE `0478`?",
         options: [
-          "Check Digit → typed/scanned human data entry; Checksum & Parity → transmitted blocks/bytes across links; ARQ → acknowledgement + timeout retransmission protocol",
-          "Check Digit → CPU internal bus skew; Checksum → keyboard double-entry; ARQ → barcode printing",
-          "Check Digit → router hop counting; Checksum → USB voltage detection; ARQ → lossy compression",
-          "Check Digit → echo check; Checksum → simplex direction; ARQ → odd parity bit",
+          "Check Digit → human data entry; Checksum & Parity → transmitted blocks/bytes; ARQ → acknowledgement + timeout retransmission",
+          "Check Digit → CPU internal bus skew; Checksum → keyboard double-entry verification; ARQ → barcode label printing",
+          "Check Digit → router hop counting; Checksum → USB port voltage-change detection; ARQ → lossy audio compression",
+          "Check Digit → round-trip echo check; Checksum → simplex link direction control; ARQ → single-byte odd parity",
         ],
         answerIndex: 0,
         hints: [

@@ -20,7 +20,7 @@ if [ ! -s "$SHARED_MODELS/kokoro-v1.0.onnx" ] && [ ! -s kokoro-v1.0.onnx ]; then
 fi
 export NODE_PATH="${NODE_PATH:-$ROOT/node_modules}"
 mkdir -p "$ROOT/public/videos/posters"
-WORKERS="${SITCOM_WORKERS:-2}"
+WORKERS="${SITCOM_WORKERS:-1}"
 stamp() { echo "=== $T: $1 (+$(( $(date +%s) - S0 ))s)"; }
 for T in "$@"; do
   S0=$(date +%s)
@@ -33,7 +33,7 @@ for T in "$@"; do
   stamp "voices done"; echo "=== $T: frames (workers=$WORKERS)"; rm -f out/$T/part*.mp4; "$PY" render.py "out/$T" --workers "$WORKERS"
   stamp "frames done"; echo "=== $T: encode"
   ffmpeg -y -loglevel error -f concat -safe 0 -i "out/$T/parts.txt" -i "out/$T/audio.wav" \
-    -c:v copy \
+    -c:v copy -color_range tv \
     -af "loudnorm=I=-16:TP=-1.5:LRA=11" -ar 48000 -c:a aac -b:a 128k -movflags +faststart -shortest \
     "$ROOT/public/videos/$T.mp4"
   "$PY" render.py "out/$T" --poster "$ROOT/public/videos/posters/$T.jpg"

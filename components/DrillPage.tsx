@@ -66,7 +66,7 @@ export function DrillPage({ skillId, topicReady = true }: { skillId: string; top
   );
 
   return (
-    <div className="space-y-5">
+    <div className="min-w-0 space-y-5">
       <nav aria-label="Breadcrumb" className="text-sm">
         <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-ink-2">
           <li>

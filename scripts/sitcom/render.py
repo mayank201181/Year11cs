@@ -42,9 +42,9 @@ async def main():
                 await browser.close()
                 return
 
-            fps = tl["fps"]
+            fps = tl.get("fps", 24)
             N = math.ceil(tl["duration"] * fps)
-            workers = max(1, min(2, int(opt("--workers", "2"))))
+            workers = max(1, min(2, int(opt("--workers", "1"))))
             per = math.ceil(N / workers)
             t0 = time.time()
 
@@ -56,8 +56,10 @@ async def main():
                 seg = os.path.join(out, f"part{w}.mp4")
                 ff = subprocess.Popen(
                     ["ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(fps),
-                     "-c:v", "mjpeg", "-i", "-", "-c:v", "libx264", "-preset", "ultrafast", "-crf", "28",
-                     "-r", "24", "-pix_fmt", "yuv420p", "-tune", "animation", seg],
+                     "-c:v", "mjpeg", "-i", "-",
+                     "-vf", "scale=in_range=full:out_range=tv,format=yuv420p",
+                     "-c:v", "libx264", "-threads", "1", "-preset", "veryfast", "-crf", "24",
+                     "-r", "24", "-pix_fmt", "yuv420p", "-color_range", "tv", "-tune", "animation", seg],
                     stdin=subprocess.PIPE,
                 )
                 assert ff.stdin is not None

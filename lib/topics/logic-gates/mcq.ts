@@ -470,9 +470,9 @@ export const mcqPapers: Paper[] = [
         question:
           "In the 3-input circuit `X = (A AND B) NOR C`, you are told that the final output is **`X = 1`**. What can you deduce with certainty about input `C`?",
         options: [
-          "Input C can be either 0 or 1 depending on A and B",
-          "Input C must be 1",
-          "Inputs A, B, and C must all be 1",
+          "Input C can be either 0 or 1 depending on whether A and B both equal 1",
+          "Input C must be 1, because a NOR gate outputs 1 whenever an input is 1",
+          "Inputs A, B, and C must all equal 1 simultaneously to drive the output high",
           "Input C must be 0, because a NOR gate outputs 1 only when both of its inputs are 0",
         ],
         answerIndex: 3,
@@ -814,7 +814,7 @@ export const mcqPapers: Paper[] = [
           "2 rows",
           "4 rows",
           "3 rows",
-          "1 row only (specifically A = 1, B = 1, P = 0)",
+          "1 row",
         ],
         answerIndex: 3,
         hints: [
@@ -873,7 +873,7 @@ export const mcqPapers: Paper[] = [
           "An engineer reviews the circuit `X = (A AND B) OR (A AND (NOT B))` across all 4 input pairs `(00, 01, 10, 11)`. What is `X` equivalent to?",
         options: [
           "X = B alone",
-          "X = A alone (zero logic gates needed!)",
+          "X = A alone",
           "Output X is always 1",
           "X = A XOR B",
         ],

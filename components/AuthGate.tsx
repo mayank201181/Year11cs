@@ -6,7 +6,7 @@ import { useStore } from "@/lib/store";
 type Tab = "welcome" | "login" | "signup";
 
 export function AuthGate() {
-  const { login, signup, closeSignIn, cloudAvailable } = useStore();
+  const { login, signup, closeSignIn, accountsAvailable } = useStore();
   const [tab, setTab] = useState<Tab>("welcome");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -66,7 +66,7 @@ export function AuthGate() {
             <button type="button" className="btn btn-primary w-full" onClick={closeSignIn}>
               Continue as Vanishree on this device
             </button>
-            {cloudAvailable ? (
+            {accountsAvailable ? (
               <>
                 <button type="button" className="btn btn-secondary w-full" onClick={() => setTab("login")}>
                   Sign in to family cloud sync

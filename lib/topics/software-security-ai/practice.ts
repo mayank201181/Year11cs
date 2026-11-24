@@ -1200,10 +1200,10 @@ export const practice: TopicPractice = {
       question:
         "Suppose Alice mistakenly encrypts a secret business bid using **Alice's OWN Private Key** instead of **Bob's Public Key**, and sends the ciphertext across the Internet to Bob. Why has **confidentiality completely failed**?",
       options: [
-        "Because Alice's Private Key leaves the message in unscrambled plaintext",
+        "Because Alice's Private Key is only a hashing function that leaves the original business bid in unscrambled plaintext",
         "Because ANY eavesdropper on the Internet can obtain Alice's openly published Public Key and decrypt the ciphertext immediately",
-        "Because Private Keys only work on persistent cookies",
-        "Because Bob's firewall automatically deletes any packet over 8 bits",
+        "Because asymmetric Private Keys can only encrypt temporary session cookies stored inside RAM, never network messages",
+        "Because Bob's network firewall automatically rejects and deletes any incoming encrypted packet larger than 8 bits",
       ],
       answerIndex: 1,
       hints: [

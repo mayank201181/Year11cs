@@ -47,7 +47,7 @@ function LoadError() {
 }
 
 export function AppGate({ children }: { children: ReactNode }) {
-  const { status, signInOpen } = useStore();
+  const { status, signInOpen, accountsAvailable } = useStore();
   const path = usePathname();
   const parentRoute = path?.startsWith("/parent");
   let body: ReactNode;
@@ -69,7 +69,7 @@ export function AppGate({ children }: { children: ReactNode }) {
           <MobileNav />
         </ErrorBoundary>
       ) : null}
-      {signInOpen ? <AuthGate /> : null}
+      {signInOpen && accountsAvailable ? <AuthGate /> : null}
     </>
   );
 }
