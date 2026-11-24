@@ -2214,62 +2214,62 @@ export const SHORTS: ShortClip[] = [
         "text": "Did someone commit an unbuffered destructive assignment before breakfast?"
       },
       {
-        "t": 44.17,
+        "t": 44.23,
         "who": "Dad",
         "text": "Centi! Even worse — I coded a family holiday packing app, jumped straight to typing Python, and nothing works!"
       },
       {
-        "t": 52.06,
+        "t": 52.12,
         "who": "Centi",
         "text": "Because you skipped the Program Development Life Cycle: Analysis, Design, Coding, and Testing, run iteratively!"
       },
       {
-        "t": 59.7,
+        "t": 59.76,
         "who": "Tara",
         "text": "In Analysis we apply abstraction and decomposition to agree the requirements specification, right?"
       },
       {
-        "t": 66.52,
+        "t": 66.58,
         "who": "Centi",
         "text": "Spot on! Abstraction keeps essential details, like suitcase weight, while filtering out irrelevant clutter like sock colours."
       },
       {
-        "t": 74.62,
+        "t": 74.68,
         "who": "Dad",
         "text": "Like how the MRT transit map keeps station connections and ignores every curve in the road!"
       },
       {
-        "t": 81.67,
+        "t": 81.72,
         "who": "Centi",
         "text": "Exactly! And decomposition breaks a complex system into smaller modules on a top-down structure diagram during Design!"
       },
       {
-        "t": 89.99,
+        "t": 90.05,
         "who": "Mum",
         "text": "Why split the app into smaller modules instead of one giant script?"
       },
       {
-        "t": 94.18,
+        "t": 94.24,
         "who": "Tara",
         "text": "Because separate programmers can code and test modules in parallel without breaking everything else!"
       },
       {
-        "t": 100.05,
+        "t": 100.11,
         "who": "Centi",
         "text": "And Design also produces flowcharts and CIE pseudocode! Watch the five standard flowchart shapes."
       },
       {
-        "t": 107.3,
+        "t": 107.36,
         "who": "Tara",
         "text": "Rectangles for processes, double-barred boxes for subroutines, and diamonds for decisions!"
       },
       {
-        "t": 113.51,
+        "t": 113.57,
         "who": "Centi",
         "text": "Never forget to label both exit arrows on every decision diamond, and use two angle brackets for not equal in CIE pseudocode!"
       },
       {
-        "t": 122.43,
+        "t": 122.49,
         "who": "Dad",
         "text": "To find our lightest suitcase, I initialised Minimum Weight to zero. Somehow every bag weighed more than zero, so my app claims our lightest bag weighs zero!"
       }
@@ -2299,59 +2299,54 @@ export const SHORTS: ShortClip[] = [
         "text": "To find our lightest suitcase, I initialised Minimum Weight to zero. Somehow every bag weighed more than zero, so my app claims our lightest bag weighs zero!"
       },
       {
-        "t": 133.75,
+        "t": 133.81,
         "who": "Tara",
         "text": "Dad, positive weights are never smaller than zero! Initialise Minimum and Maximum to the first item in the array!"
       },
       {
-        "t": 141.29,
+        "t": 141.35,
         "who": "Centi",
         "text": "Or set Minimum to a huge number like nine thousand nine hundred and ninety nine so the first real input beats it!"
       },
       {
-        "t": 148.76,
+        "t": 148.81,
         "who": "Dad",
         "text": "What if Mum's passport is buried inside an unsorted array of bags?"
       },
       {
-        "t": 153.98,
+        "t": 154.04,
         "who": "Centi",
         "text": "Run a Linear Search! Start at index one with a Found boolean flag set to false, checking items one by one until Found becomes true or the array ends."
       },
       {
-        "t": 164.73,
+        "t": 164.79,
         "who": "Dad",
         "text": "And how do I sort my spice jars properly without inventing chilli-cinnamon?"
       },
       {
-        "t": 170.18,
+        "t": 170.24,
         "who": "Centi",
         "text": "Use Bubble Sort! Compare adjacent pairs, and swap out-of-order neighbours using three lines with Temp!"
       },
       {
-        "t": 176.88,
+        "t": 176.94,
         "who": "Tara",
         "text": "Look! On four items — thirty, twelve, twenty four, eight — thirty bubbles right past all three smaller numbers in Pass One!"
       },
       {
-        "t": 184.84,
+        "t": 184.9,
         "who": "Centi",
         "text": "Plus two CIE optimisations: shrink Last by one each pass because the tail is locked, and reset Swap to false so a zero-swap pass stops early!"
       },
       {
-        "t": 195.0,
+        "t": 195.06,
         "who": "Dad",
         "text": "Wait — so even if Pass One finishes sorting everything, it still runs one quick zero-swap pass to confirm Swap stays false?"
       },
       {
-        "t": 203.99,
+        "t": 204.05,
         "who": "Tara",
         "text": "Yes! The computer cannot magically peek ahead without running one clean check pass!"
-      },
-      {
-        "t": 209.36,
-        "who": "Centi",
-        "text": "Pause challenge one! During Pass One of an ascending Bubble Sort on twenty five, ten, eighteen, six, how many swaps occur?"
       }
     ]
   },
@@ -2366,7 +2361,7 @@ export const SHORTS: ShortClip[] = [
     "index": 4,
     "totalInTopic": 4,
     "title": "Bubble Sort Your Life Out — Pause Challenge Round",
-    "summary": "Pause challenge one! During Pass One of an ascending Bubble Sort on twenty five, ten, eighteen, six, how many swaps occur?",
+    "summary": "Yes! The computer cannot magically peek ahead without running one clean check pass!",
     "startSec": 209.1,
     "endSec": 439.4,
     "durationSec": 230.3,
@@ -2374,127 +2369,132 @@ export const SHORTS: ShortClip[] = [
     "poster": "/videos/posters/algorithms-testing.jpg",
     "captions": [
       {
-        "t": 209.36,
+        "t": 209.1,
+        "who": "Tara",
+        "text": "Yes! The computer cannot magically peek ahead without running one clean check pass!"
+      },
+      {
+        "t": 209.42,
         "who": "Centi",
         "text": "Pause challenge one! During Pass One of an ascending Bubble Sort on twenty five, ten, eighteen, six, how many swaps occur?"
       },
       {
-        "t": 223.19,
+        "t": 223.25,
         "who": "Centi",
         "text": "Three swaps! Twenty five compares and swaps past ten, then eighteen, then six to lock at the end."
       },
       {
-        "t": 232.51,
+        "t": 232.57,
         "who": "Cashier",
         "text": "Sir, your pre-booked baggage form says you are checking in eighty two suitcases instead of two!"
       },
       {
-        "t": 237.99,
+        "t": 238.05,
         "who": "Dad",
         "text": "Impossible! I put a range check from one to one hundred on that form! Validation proves my data is completely accurate!"
       },
       {
-        "t": 249.54,
+        "t": 249.6,
         "who": "Centi",
         "text": "Buzzer of doom! Never write that validation checks data is correct, accurate, or valid — that scores zero marks!"
       },
       {
-        "t": 257.52,
+        "t": 257.58,
         "who": "Tara",
         "text": "Validation is an automated check that data is reasonable and sensible, using Range, Length, Type, Presence, Format, or Check Digit!"
       },
       {
-        "t": 266.49,
+        "t": 266.55,
         "who": "Centi",
         "text": "Eighty two sits comfortably inside one to one hundred, so validation accepts it! Catching a copying typo requires verification!"
       },
       {
-        "t": 275.45,
+        "t": 275.51,
         "who": "Cashier",
         "text": "Verification checks data was copied accurately — either typing it twice in Double Entry, or reading the screen in a Visual Check!"
       },
       {
-        "t": 283.29,
+        "t": 283.35,
         "who": "Dad",
         "text": "Fine! At least I tested my one-to-one-hundred range check with extreme data: zero and one hundred and one!"
       },
       {
-        "t": 291.9,
+        "t": 291.96,
         "who": "Tara",
         "text": "Second mark-scheme trap! Extreme data must be ACCEPTED values right on the limits — one and one hundred ONLY!"
       },
       {
-        "t": 299.44,
+        "t": 299.5,
         "who": "Centi",
         "text": "Whereas boundary test data comes in pairs straddling each limit: zero rejected with one accepted, or one hundred accepted with one hundred and one rejected!"
       },
       {
-        "t": 310.52,
+        "t": 310.58,
         "who": "Dad",
         "text": "Aha! Boundary pairs catch off-by-one bugs when someone writes strict less-than instead of less-than-or-equal-to!"
       },
       {
-        "t": 318.22,
+        "t": 318.28,
         "who": "Centi",
         "text": "Pause challenge two! A rule accepts whole numbers from ten to fifty inclusive. What is the largest item of extreme test data?"
       },
       {
-        "t": 332.91,
+        "t": 332.97,
         "who": "Centi",
         "text": "Fifty! Extreme values sit right on the edge and must be accepted. Fifty and fifty one together would be the upper boundary pair."
       },
       {
-        "t": 342.95,
+        "t": 343.0,
         "who": "Dad",
         "text": "One mystery left! Why did my invalid-age filter, IF Age less than one AND Age greater than one hundred, never reject negative five?"
       },
       {
-        "t": 353.01,
+        "t": 353.06,
         "who": "Tara",
         "text": "Because no number in the universe is below one AND above one hundred simultaneously! Rejecting out-of-range inputs needs OR!"
       },
       {
-        "t": 361.51,
+        "t": 361.57,
         "who": "Centi",
         "text": "Accepting inside a range uses AND; rejecting outside a range uses OR! And to catch bugs fast, dry-run a CIE trace table!"
       },
       {
-        "t": 370.52,
+        "t": 370.58,
         "who": "Centi",
         "text": "Write initialisations on the top row, leave unchanged columns blank, and fill OUTPUT only when an OUTPUT instruction runs!"
       },
       {
-        "t": 379.04,
+        "t": 379.1,
         "who": "Mum",
         "text": "And never put Total assigned zero inside your loop, unless you want to erase your running total every single turn!"
       },
       {
-        "t": 385.68,
+        "t": 385.74,
         "who": "Tara",
         "text": "Ready for one final dry-run before anyone touches Mum's new cinnamon jar?"
       },
       {
-        "t": 391.0,
+        "t": 391.06,
         "who": "Centi",
         "text": "Final pause challenge! X starts at twenty and Steps at zero. Inside a REPEAT loop, X drops by six and Steps rises by one UNTIL X is less than five. What is Steps?"
       },
       {
-        "t": 408.95,
+        "t": 409.01,
         "who": "Centi",
         "text": "Three! Twenty drops to fourteen, then eight, then two on step three. Two is less than five, making the UNTIL condition true!"
       },
       {
-        "t": 417.48,
+        "t": 417.54,
         "who": "Dad",
         "text": "Three steps, one temporary mug, reasonable validation, and paired boundary tests! My spice rack is officially certified!"
       },
       {
-        "t": 426.55,
+        "t": 426.61,
         "who": "Mum",
         "text": "I am still running Double Entry verification before you season dinner!"
       },
       {
-        "t": 430.68,
+        "t": 430.74,
         "who": "Tara",
         "text": "And Centi is grading your trace table in permanent marker!"
       }

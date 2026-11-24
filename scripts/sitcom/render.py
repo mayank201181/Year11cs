@@ -42,6 +42,19 @@ async def main():
                 await browser.close()
                 return
 
+            stills = opt("--stills")
+            if stills:
+                pg = await open_page(browser, port)
+                sdir = os.path.join(out, "stills")
+                os.makedirs(sdir, exist_ok=True)
+                for ts in stills.split(","):
+                    tval = float(ts)
+                    d = await pg.evaluate("(t) => window.frameJpeg(t, 0.85)", tval)
+                    with open(os.path.join(sdir, f"t{tval:06.1f}.jpg"), "wb") as sf:
+                        sf.write(base64.b64decode(d.split(",", 1)[1]))
+                await browser.close()
+                return
+
             fps = tl.get("fps", 24)
             N = math.ceil(tl["duration"] * fps)
             workers = max(1, min(2, int(opt("--workers", "1"))))
