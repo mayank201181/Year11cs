@@ -23,6 +23,10 @@ export interface TopicMeta {
   title: string;
   strand: Strand;
   icon: string;
+  /** Which IGCSE year normally teaches this topic (Year 10 vs Year 11). */
+  courseYear: 10 | 11;
+  /** Teaching order used when ?year=10 is active (1..N). */
+  courseOrder: number;
   /** Which CIE 0478 syllabus & Tanglin CS unit this topic covers. */
   curriculum: string;
   sections: SectionPlan[];
@@ -40,6 +44,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Number Systems & Two's Complement",
     strand: "Paper 1: Computer Systems",
     icon: "🔢",
+    courseYear: 10,
+    courseOrder: 1,
     curriculum: "CIE 0478 1.1 — Denary, Unsigned Binary, Hexadecimal, Binary Addition/Overflow, Logical Shifts & 8-bit Two's Complement",
     sections: [
       {
@@ -69,6 +75,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Text, Sound, Images & Compression",
     strand: "Paper 1: Computer Systems",
     icon: "🎨",
+    courseYear: 10,
+    courseOrder: 2,
     curriculum: "CIE 0478 1.2 & 1.3 — ASCII vs Unicode, Sound Sampling, Bitmap Images, IEC Storage Units (1024) & Lossless (RLE) vs Lossy Compression",
     sections: [
       {
@@ -103,6 +111,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Data Transmission & Error Detection",
     strand: "Paper 1: Computer Systems",
     icon: "📡",
+    courseYear: 10,
+    courseOrder: 3,
     curriculum: "CIE 0478 2.1 & 2.2 — Packets & Packet Switching, Serial/Parallel, Simplex/Half/Full-Duplex, USB, Parity, Checksums, Echo Checks, Check Digits & ARQ",
     sections: [
       {
@@ -137,6 +147,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "CPU Architecture, Hardware & Storage",
     strand: "Paper 1: Computer Systems",
     icon: "🖥️",
+    courseYear: 10,
+    courseOrder: 4,
     curriculum: "CIE 0478 3.1–3.4 — Von Neumann CPU & FDE Cycle, Input/Output/Sensors, Primary & Secondary Storage, Virtual/Cloud Storage & Network Hardware",
     sections: [
       {
@@ -166,6 +178,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Software, Internet, Cyber Security & AI",
     strand: "Paper 1: Computer Systems",
     icon: "🛡️",
+    courseYear: 11,
+    courseOrder: 7,
     curriculum: "CIE 0478 4.1–4.2, 5.1–5.3 & 6.1–6.3 — OS & Interrupts, Translators & IDEs, WWW/DNS/HTTPS, Cyber Threats & Encryption, Automated Systems, Robotics & AI",
     sections: [
       {
@@ -202,6 +216,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Boolean Logic & Logic Circuits",
     strand: "Paper 2: Algorithms, Programming & Logic",
     icon: "⚡",
+    courseYear: 10,
+    courseOrder: 5,
     curriculum: "CIE 0478 10 — NOT, AND, OR, NAND, NOR & XOR Gates, Logic Circuits, Truth Tables & Logic Expressions",
     sections: [
       {
@@ -231,6 +247,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Algorithms, Validation, Testing & Trace Tables",
     strand: "Paper 2: Algorithms, Programming & Logic",
     icon: "🧭",
+    courseYear: 10,
+    courseOrder: 6,
     curriculum: "CIE 0478 7 — Computational Thinking, Program Development Life Cycle, Flowcharts & Pseudocode, Linear Search & Bubble Sort, Validation/Verification, Test Data & Trace Tables",
     sections: [
       {
@@ -265,6 +283,8 @@ export const TOPIC_META: TopicMeta[] = [
     title: "Python Programming, Arrays, Files & SQL",
     strand: "Paper 2: Algorithms, Programming & Logic",
     icon: "🐍",
+    courseYear: 11,
+    courseOrder: 8,
     curriculum: "CIE 0478 8 & 9 — Python & CIE Pseudocode (Variables, Selection, Iteration, Strings, Subroutines, 1D/2D Arrays, File Handling) & Single-Table Databases + SQL",
     sections: [
       {
